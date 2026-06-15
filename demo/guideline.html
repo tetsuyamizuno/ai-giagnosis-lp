@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>デモ｜生成AIガイドライン作成 - GenerativeX</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif;background:#f0f2f5;color:#1e2240;line-height:1.7;}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:#475569;text-decoration:none;font-size:14px;font-weight:600;}
+  .back-link:hover{color:#6c63ff;}
+  .demo-badge{background:linear-gradient(135deg,#6c63ff,#3d35b0);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:5px 14px;border-radius:14px;}
+  .wrap{max-width:1100px;margin:0 auto;padding:36px 24px 60px;}
+  .demo-head{text-align:center;margin-bottom:12px;}
+  .demo-head .tool-ico{font-size:40px;}
+  .demo-head h1{font-size:clamp(22px,3vw,30px);font-weight:800;margin:8px 0 6px;}
+  .demo-head p{font-size:14px;color:#64748b;}
+  .notice{max-width:780px;margin:20px auto 40px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px 20px;font-size:13px;color:#92400e;line-height:1.7;text-align:center;}
+  .notice strong{color:#b45309;}
+  .screens{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
+  .screen{background:#fff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.07);}
+  .screen-tag{background:#1e2240;color:#fff;font-size:12px;font-weight:700;letter-spacing:0.06em;padding:10px 18px;display:flex;align-items:center;gap:10px;}
+  .screen-tag .step{background:#6c63ff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+  .browser-bar{background:#f1f3f8;padding:9px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #e8ebf0;}
+  .dot{width:9px;height:9px;border-radius:50%;}
+  .url{flex:1;margin-left:8px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;font-size:10px;color:#94a3b8;padding:3px 12px;text-align:center;}
+  .screen-body{padding:24px 22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:12px;font-weight:700;color:#475569;margin-bottom:6px;}
+  .field .inp{border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;font-size:13px;color:#1e2240;background:#fafbfd;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{font-size:11px;padding:5px 11px;border-radius:14px;border:1px solid #e2e8f0;color:#64748b;}
+  .chip.on{background:#f8f7ff;border-color:#6c63ff;color:#6c63ff;font-weight:700;}
+  .steps{display:flex;gap:6px;margin-bottom:18px;}
+  .steps .s{flex:1;text-align:center;font-size:10px;color:#94a3b8;}
+  .steps .s .n{width:24px;height:24px;border-radius:50%;background:#eef0f6;color:#94a3b8;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 4px;}
+  .steps .s.on .n{background:#6c63ff;color:#fff;}
+  .steps .s.on{color:#6c63ff;font-weight:700;}
+  /* doc preview */
+  .doc{border:1px solid #e2e8f0;border-radius:8px;padding:16px;background:#fff;font-size:11px;line-height:1.7;}
+  .doc h2{font-size:15px;font-weight:800;color:#3d35b0;margin-bottom:4px;}
+  .doc .sub{font-size:10px;color:#94a3b8;margin-bottom:12px;}
+  .doc h3{font-size:12px;font-weight:700;border-left:3px solid #6c63ff;padding-left:8px;margin:12px 0 6px;}
+  .doc p{color:#475569;margin-bottom:4px;}
+  .doc .ph{background:#fef9c3;color:#92400e;border-radius:3px;padding:0 3px;font-weight:600;}
+  .dl{margin-top:14px;text-align:center;}
+  .dl span{display:inline-block;background:#188038;color:#fff;font-size:12px;font-weight:700;padding:9px 22px;border-radius:22px;}
+  .cta{text-align:center;margin-top:48px;}
+  .cta h3{font-size:20px;font-weight:800;margin-bottom:10px;}
+  .cta p{font-size:14px;color:#64748b;margin-bottom:24px;}
+  .btn{display:inline-block;background:linear-gradient(135deg,#6c63ff,#3d35b0);color:#fff;font-size:15px;font-weight:700;text-decoration:none;padding:15px 40px;border-radius:30px;box-shadow:0 6px 22px rgba(108,99,255,0.35);}
+  @media(max-width:820px){.screens{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html" class="back-link">← LPに戻る</a>
+  <span class="demo-badge">DEMO / 画面イメージ</span>
+</div>
+
+<div class="wrap">
+  <div class="demo-head">
+    <div class="tool-ico">📄</div>
+    <h1>生成AIガイドライン作成</h1>
+    <p>質問に答えるだけで、貴社オリジナルの生成AI利用ガイドラインが完成。Word形式でダウンロードできます。</p>
+  </div>
+  <div class="notice">
+    これは実際のツール画面の<strong>イメージ（デモ）</strong>です。操作はできません。<br>
+    ご利用をご希望の方は、<strong>LP下部のお問い合わせフォーム</strong>よりご連絡ください。
+  </div>
+
+  <div class="screens">
+    <!-- 入力画面 -->
+    <div class="screen">
+      <div class="screen-tag"><span class="step">1</span> 入力画面</div>
+      <div class="browser-bar">
+        <span class="dot" style="background:#f87171;"></span><span class="dot" style="background:#fbbf24;"></span><span class="dot" style="background:#34d399;"></span>
+        <span class="url">generativex / ガイドライン作成</span>
+      </div>
+      <div class="screen-body">
+        <div class="steps">
+          <div class="s on"><div class="n">1</div>基本情報</div>
+          <div class="s on"><div class="n">2</div>管理体制</div>
+          <div class="s"><div class="n">3</div>許可AI</div>
+          <div class="s"><div class="n">4</div>完成</div>
+        </div>
+        <div class="field">
+          <label>会社名</label>
+          <div class="inp">株式会社サンプル商事</div>
+        </div>
+        <div class="field">
+          <label>業種</label>
+          <div class="inp">製造業</div>
+        </div>
+        <div class="field">
+          <label>AI利用を許可するサービス</label>
+          <div class="chips">
+            <span class="chip on">ChatGPT</span>
+            <span class="chip on">Gemini</span>
+            <span class="chip on">Claude</span>
+            <span class="chip">Copilot</span>
+            <span class="chip">その他</span>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:8px;"><span style="display:inline-block;background:#6c63ff;color:#fff;font-size:13px;font-weight:700;padding:10px 28px;border-radius:24px;">次へ →</span></div>
+      </div>
+    </div>
+
+    <!-- 結果画面 -->
+    <div class="screen">
+      <div class="screen-tag"><span class="step">2</span> 結果画面</div>
+      <div class="browser-bar">
+        <span class="dot" style="background:#f87171;"></span><span class="dot" style="background:#fbbf24;"></span><span class="dot" style="background:#34d399;"></span>
+        <span class="url">generativex / ガイドライン完成</span>
+      </div>
+      <div class="screen-body">
+        <div class="doc">
+          <h2>生成AI利用ガイドライン</h2>
+          <div class="sub"><span class="ph">株式会社サンプル商事</span>　2026年6月制定</div>
+          <h3>第1条（目的）</h3>
+          <p>本ガイドラインは、当社における生成AIの安全かつ適切な利用を促進し、情報漏洩等のリスクを防止することを目的とする。</p>
+          <h3>第2条（利用可能なサービス）</h3>
+          <p>当社が利用を許可する生成AIサービスは <span class="ph">ChatGPT / Gemini / Claude</span> とする。</p>
+          <h3>第3条（禁止事項）</h3>
+          <p>機密情報・個人情報・顧客情報の入力を禁止する。…</p>
+        </div>
+        <div class="dl"><span>📥 Word形式でダウンロード</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>このツールを使ってみたい方へ</h3>
+    <p>お問い合わせいただいた方に、無料トライアルをご案内いたします。</p>
+    <a href="../index.html#contact" class="btn">お問い合わせ・ご相談はこちら →</a>
+  </div>
+</div>
+</body>
+</html>

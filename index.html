@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIセキュリティツール | 株式会社GenerativeX</title>
+  <meta name="description" content="生成AIセキュリティツール集＋WEB脆弱性診断。AIリスクから組織を守る2つの無料ツール。インストール不要・日本語対応。" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+      color: #1e2240;
+      background: #ffffff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1e2240;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: #6c63ff; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #6c63ff, #3d35b0);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 24px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #1e2240 0%, #2d2860 50%, #3d35b0 100%);
+      padding: 100px 40px 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, #c4b5fd, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-tool-chip {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+    .hero-sep { color: rgba(255,255,255,0.3); font-size: 18px; }
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #6c63ff;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 32px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(108,99,255,0.5); }
+    .btn-secondary {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 32px;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* ===== SECTION BASE ===== */
+    .section { padding: 80px 40px; }
+    .section-alt { background: #f8f7ff; }
+    .section-dark { background: #1e2240; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #6c63ff;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 800;
+      color: #1e2240;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .section-title-white { color: #ffffff; }
+    .section-desc {
+      font-size: 15px;
+      color: #64748b;
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* ===== STATS STRIP ===== */
+    .stats-strip {
+      background: #f0f2f5;
+      padding: 32px 40px;
+    }
+    .stats-grid {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: #6c63ff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+    /* ===== PAIN ===== */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .pain-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #f87171, #fb923c);
+    }
+    .pain-icon { font-size: 32px; margin-bottom: 16px; }
+    .pain-title { font-size: 16px; font-weight: 700; color: #1e2240; margin-bottom: 10px; }
+    .pain-desc { font-size: 13px; color: #64748b; line-height: 1.75; }
+
+    /* ===== SOLUTION ===== */
+    .solution-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 60px;
+    }
+    .solution-row.reverse { direction: rtl; }
+    .solution-row.reverse > * { direction: ltr; }
+    .solution-demo {
+      background: linear-gradient(135deg, #1e2240, #2d3a6e);
+      border-radius: 16px;
+      padding: 32px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(30,34,64,0.2);
+    }
+    .solution-demo-purple {
+      background: linear-gradient(135deg, #3d2080, #5b3fc0);
+    }
+    .demo-toolbar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .demo-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .demo-mock {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .demo-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.15);
+      margin-bottom: 8px;
+    }
+    .demo-bar-fill {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #6c63ff, #a78bfa);
+    }
+    .demo-label { font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .solution-content {}
+    .solution-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #6c63ff, #a78bfa);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .solution-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      color: #1e2240;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .solution-desc {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .feature-list { list-style: none; margin-bottom: 28px; }
+    .feature-list li {
+      font-size: 14px;
+      color: #374151;
+      padding: 6px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .feature-list li::before {
+      content: '✓';
+      color: #6c63ff;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .effect-box {
+      background: #f8f7ff;
+      border-left: 3px solid #6c63ff;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .effect-box strong { color: #6c63ff; }
+    .btn-tool {
+      display: inline-block;
+      background: linear-gradient(135deg, #6c63ff, #3d35b0);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 13px 30px;
+      border-radius: 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(108,99,255,0.3);
+    }
+    .btn-tool:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.4); }
+
+    /* 6ツールグリッド */
+    .tools-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .tool-mini {
+      background: #f8f7ff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tool-mini-icon { font-size: 18px; flex-shrink: 0; }
+    .tool-mini-name { font-size: 13px; font-weight: 600; color: #1e2240; }
+    .tool-mini-desc { font-size: 11px; color: #64748b; line-height: 1.4; margin-top: 2px; }
+    a.tool-mini {
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      position: relative;
+    }
+    a.tool-mini:hover {
+      border-color: #6c63ff;
+      box-shadow: 0 6px 18px rgba(108,99,255,0.18);
+      transform: translateY(-2px);
+    }
+    a.tool-mini::after {
+      content: 'デモ →';
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #a78bfa;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    a.tool-mini:hover::after { opacity: 1; }
+
+    /* メニュー画面の見本（ブラウザ風モック） */
+    .menu-mock {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    .menu-mock-bar {
+      background: #f1f3f8;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .menu-mock-bar .demo-dot { width: 9px; height: 9px; }
+    .menu-mock-url {
+      flex: 1;
+      margin-left: 8px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 9px;
+      color: #94a3b8;
+      padding: 3px 10px;
+      text-align: center;
+    }
+    .menu-mock-body { padding: 22px 20px 24px; }
+    .menu-mock-title {
+      font-size: 15px;
+      font-weight: 800;
+      text-align: center;
+      background: linear-gradient(135deg, #1e2240, #6c63ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+    .menu-mock-sub { font-size: 9px; color: #94a3b8; text-align: center; margin-bottom: 16px; }
+    .menu-mock-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .menu-mock-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 8px;
+      text-align: center;
+      background: #ffffff;
+    }
+    .menu-mock-card .mc-icon { font-size: 16px; margin-bottom: 5px; }
+    .menu-mock-card .mc-name { font-size: 8.5px; font-weight: 700; color: #1e2240; line-height: 1.3; }
+
+    /* 無料の注釈 */
+    .price-note {
+      max-width: 1080px;
+      margin: 28px auto 0;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      text-align: center;
+    }
+    .price-note strong { color: #c4b5fd; }
+
+    /* ===== TRUST ===== */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .trust-card {
+      text-align: center;
+      padding: 32px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+    }
+    .trust-icon { font-size: 36px; margin-bottom: 14px; }
+    .trust-title { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .trust-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ===== FLOW ===== */
+    .flow-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+    .flow-row::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(16.66% + 20px);
+      right: calc(16.66% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, #6c63ff, #a78bfa);
+    }
+    .flow-step { text-align: center; padding: 0 24px; position: relative; }
+    .flow-num {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6c63ff, #3d35b0);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 24px rgba(108,99,255,0.3);
+    }
+    .flow-title { font-size: 17px; font-weight: 700; color: #1e2240; margin-bottom: 10px; }
+    .flow-desc { font-size: 13px; color: #64748b; line-height: 1.7; }
+
+    /* ===== FAQ ===== */
+    .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 22px 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e2240;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-q:hover { color: #6c63ff; }
+    .faq-q-text { flex: 1; }
+    .faq-arrow {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #f8f7ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.85;
+      padding-bottom: 20px;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta {
+      background: linear-gradient(135deg, #1e2240 0%, #3d35b0 100%);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .final-cta p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+    }
+    .contact-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 48px 48px;
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .contact-box h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .contact-box p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 7px;
+    }
+    .form-label .req {
+      color: #f87171;
+      margin-left: 4px;
+      font-size: 11px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 14px;
+      color: #ffffff;
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: #6c63ff;
+      background: rgba(108,99,255,0.1);
+    }
+    .form-textarea { min-height: 110px; resize: vertical; }
+    .form-select option { background: #1e2240; color: #ffffff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #6c63ff, #3d35b0);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: inherit;
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .contact-direct {
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .contact-direct p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .contact-info-row {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .contact-info-item a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-info-item a:hover { text-decoration: underline; }
+    .contact-info-icon { font-size: 15px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #0f1128;
+      padding: 40px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .footer-logo span { color: #a78bfa; }
+    .footer-address {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.8;
+    }
+    .footer-address a { color: #a78bfa; text-decoration: none; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; margin-top: 4px; }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #a78bfa; }
+    .footer-bottom {
+      padding-top: 20px;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav { padding: 0 20px; }
+      .section { padding: 60px 20px; }
+      .hero { padding: 70px 20px 60px; }
+      .stats-strip { padding: 24px 20px; }
+      .final-cta { padding: 60px 20px; }
+      .footer { padding: 32px 20px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .solution-row { grid-template-columns: 1fr; gap: 32px; }
+      .solution-row.reverse { direction: ltr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-row { grid-template-columns: 1fr; gap: 40px; }
+      .flow-row::before { display: none; }
+      .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+      .contact-box { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; gap: 24px; }
+      .hero-tools { flex-direction: column; gap: 8px; }
+      .hero-sep { display: none; }
+    }
+
+    /* ===== ANIMATION ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Generative<span>X</span></a>
+  <a href="#contact" class="nav-cta">お問い合わせ・ご相談</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge">AI SECURITY TOOLS by GenerativeX</div>
+  <h1>AIリスクから、組織を守る。<br><em>2つの無料ツール</em>で<br>今日から始めるセキュリティ対策</h1>
+  <p class="hero-sub">生成AIの活用が加速する今、セキュリティ対策は待ったなしです。</p>
+  <div class="hero-tools">
+    <span class="hero-tool-chip">🤖 生成AIセキュリティツール集</span>
+    <span class="hero-sep">＋</span>
+    <span class="hero-tool-chip">🛡️ WEB脆弱性診断ツール</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#tools" class="btn-primary">ツールのデモを見る</a>
+    <a href="#contact" class="btn-secondary">まずは相談する</a>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div class="fade-up">
+      <div class="stat-num">2.4<span style="font-size:22px;">倍</span></div>
+      <div class="stat-label">AIが関与するサイバーインシデント<br>前年比増加率（IPA調査）</div>
+    </div>
+    <div class="fade-up">
+      <div class="stat-num">67<span style="font-size:22px;">%</span></div>
+      <div class="stat-label">中小企業のうちAI利用に関する<br>社内ガイドラインが未整備の割合</div>
+    </div>
+    <div class="fade-up">
+      <div class="stat-num">40<span style="font-size:22px;">%</span></div>
+      <div class="stat-label">不正メールのうちAI生成による<br>高精度な文章を使用している割合</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ENVIRONMENT（取り巻く環境） ===== -->
+<section class="section">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">CURRENT SITUATION</p>
+      <h2 class="section-title">生成AIを取り巻く<br>セキュリティの現状</h2>
+      <p class="section-desc">生成AIの業務活用が急速に広がる中、セキュリティリスクも同時に増大しています。経済産業省・IPA（情報処理推進機構）も、AIに起因するインシデントへの対策を強く推奨しており、企業規模を問わず早急な対応が求められています。</p>
+    </div>
+
+    <!-- Pain Grid -->
+    <div class="pain-grid" id="pain">
+      <div class="pain-card fade-up">
+        <div class="pain-icon">🔓</div>
+        <div class="pain-title">AIで情報漏洩しないか不安</div>
+        <div class="pain-desc">業務で生成AIを使う際、機密情報や個人情報を誤って入力してしまうリスクがあります。一度送信したデータは取り消せません。</div>
+      </div>
+      <div class="pain-card fade-up">
+        <div class="pain-icon">⚠️</div>
+        <div class="pain-title">サービスの脆弱性を把握できていない</div>
+        <div class="pain-desc">自社のWEBサイトやシステムにどんな脆弱性があるか、専門知識がないと把握が難しく、気づかないまま放置されがちです。</div>
+      </div>
+      <div class="pain-card fade-up">
+        <div class="pain-icon">📋</div>
+        <div class="pain-title">社内ガイドラインが整備できていない</div>
+        <div class="pain-desc">AI利用が広がっているのに、社内のルールや指針が追いついていない。ガイドライン作成に時間やリソースをかけられない状況です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTIONS ===== -->
+<section class="section section-alt" id="tools">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:16px;">
+      <p class="section-label">OUR TOOLS</p>
+      <h2 class="section-title">GenerativeXが提供する<br>AIセキュリティツール</h2>
+      <p class="section-desc" style="margin:0 auto;">ブラウザだけで動作し、インストール不要。すぐに使い始められます。</p>
+    </div>
+
+    <!-- Tool 1: 生成AIセキュリティツール集 -->
+    <div class="solution-row fade-up">
+      <div class="solution-demo solution-demo-purple">
+        <!-- メニュー画面の見本（index.html） -->
+        <div class="menu-mock">
+          <div class="menu-mock-bar">
+            <div class="demo-dot" style="background:#f87171;"></div>
+            <div class="demo-dot" style="background:#fbbf24;"></div>
+            <div class="demo-dot" style="background:#34d399;"></div>
+            <div class="menu-mock-url">generativex — 生成AIセキュリティツール</div>
+          </div>
+          <div class="menu-mock-body">
+            <div class="menu-mock-title">生成AIセキュリティツール</div>
+            <div class="menu-mock-sub">使いたいツールを選んでください</div>
+            <div class="menu-mock-grid">
+              <div class="menu-mock-card"><div class="mc-icon">📋</div><div class="mc-name">生成AI<br>利用診断</div></div>
+              <div class="menu-mock-card"><div class="mc-icon">📄</div><div class="mc-name">ガイドライン<br>作成</div></div>
+              <div class="menu-mock-card"><div class="mc-icon">🔍</div><div class="mc-name">ハルシネー<br>ション対策</div></div>
+              <div class="menu-mock-card"><div class="mc-icon">✅</div><div class="mc-name">ファクト<br>チェッカー</div></div>
+              <div class="menu-mock-card"><div class="mc-icon">🔒</div><div class="mc-name">機密情報<br>チェッカー</div></div>
+              <div class="menu-mock-card"><div class="mc-icon">📧</div><div class="mc-name">不正メール<br>チェッカー</div></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:10px;color:rgba(255,255,255,0.55);text-align:center;margin-top:12px;">▲ 実際のメニュー画面のイメージ</p>
+      </div>
+
+      <div class="solution-content">
+        <span class="solution-number">TOOL 01</span>
+        <h3 class="solution-title">生成AI活用を安全にするための<br>6つのツール</h3>
+        <p class="solution-desc">生成AIを業務で安全に使うために必要な機能を6つのツールとしてご提供。導入初期から運用フェーズまで、AIガバナンスの土台となります。<br><span style="font-size:12px;color:#6c63ff;font-weight:700;">▼ 各ツールをクリックすると、入力画面・結果画面のデモをご覧いただけます。</span></p>
+
+        <div class="tools-mini-grid">
+          <a class="tool-mini" href="demo/ai-shindan.html">
+            <div class="tool-mini-icon">📋</div>
+            <div>
+              <div class="tool-mini-name">生成AI利用診断</div>
+              <div class="tool-mini-desc">10問でリスクをスコアリング</div>
+            </div>
+          </a>
+          <a class="tool-mini" href="demo/guideline.html">
+            <div class="tool-mini-icon">📄</div>
+            <div>
+              <div class="tool-mini-name">ガイドライン作成</div>
+              <div class="tool-mini-desc">社内規程をAIが自動生成</div>
+            </div>
+          </a>
+          <a class="tool-mini" href="demo/hallucination.html">
+            <div class="tool-mini-icon">🔍</div>
+            <div>
+              <div class="tool-mini-name">ハルシネーション対策</div>
+              <div class="tool-mini-desc">誤回答を防ぐプロンプト集</div>
+            </div>
+          </a>
+          <a class="tool-mini" href="demo/factcheck.html">
+            <div class="tool-mini-icon">✅</div>
+            <div>
+              <div class="tool-mini-name">ファクトチェッカー</div>
+              <div class="tool-mini-desc">AI出力の信頼性を評価</div>
+            </div>
+          </a>
+          <a class="tool-mini" href="demo/confidential.html">
+            <div class="tool-mini-icon">🔒</div>
+            <div>
+              <div class="tool-mini-name">機密情報チェッカー</div>
+              <div class="tool-mini-desc">入力前に機密情報を自動検出</div>
+            </div>
+          </a>
+          <a class="tool-mini" href="demo/mail-check.html">
+            <div class="tool-mini-icon">📧</div>
+            <div>
+              <div class="tool-mini-name">不正メールチェッカー</div>
+              <div class="tool-mini-desc">フィッシングメールを判定</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="effect-box">
+          <strong>期待できる効果：</strong> 専任のAIガバナンス担当者がいなくても、現場レベルでセキュリティ意識を高め、情報事故を未然に防ぐ環境を構築できます。
+        </div>
+      </div>
+    </div>
+
+    <!-- Tool 2: 脆弱性診断 -->
+    <div class="solution-row reverse fade-up" style="margin-top:72px;">
+      <a href="demo/vulnerability.html" style="text-decoration:none;display:block;" class="solution-demo-link"><div class="solution-demo">
+        <div class="demo-toolbar">
+          <div class="demo-dot" style="background:#f87171;"></div>
+          <div class="demo-dot" style="background:#fbbf24;"></div>
+          <div class="demo-dot" style="background:#34d399;"></div>
+        </div>
+        <div class="demo-mock">
+          <div class="demo-label">診断カテゴリ</div>
+          <div style="margin-top:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-size:10px;color:rgba(255,255,255,0.6);">認証・アクセス制御</span>
+              <div class="demo-bar-fill" style="width:72px;height:6px;border-radius:3px;background:linear-gradient(90deg,#34d399,#6c63ff);"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span style="font-size:10px;color:rgba(255,255,255,0.6);">入力値検証</span>
+              <div class="demo-bar-fill" style="width:48px;height:6px;border-radius:3px;background:linear-gradient(90deg,#f87171,#fb923c);"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:10px;color:rgba(255,255,255,0.6);">通信の暗号化</span>
+              <div class="demo-bar-fill" style="width:88px;height:6px;border-radius:3px;background:linear-gradient(90deg,#34d399,#6c63ff);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-mock" style="margin-top:8px;">
+          <div class="demo-label">優先対応箇所</div>
+          <div style="font-size:10px;color:#f87171;font-weight:700;margin-top:4px;">⚠ HIGH: SQLインジェクション対策</div>
+          <div style="font-size:10px;color:#fbbf24;font-weight:700;margin-top:4px;">▲ MED: セッション管理の見直し</div>
+          <div style="font-size:10px;color:#34d399;font-weight:700;margin-top:4px;">✓ LOW: HTTPSリダイレクト設定済</div>
+        </div>
+      </div></a>
+
+      <div class="solution-content">
+        <span class="solution-number">TOOL 02</span>
+        <h3 class="solution-title">WEBサイト・アプリの<br>脆弱性を即診断</h3>
+        <p class="solution-desc">自社のWEBサイトやシステムに潜むセキュリティリスクを診断。診断項目に沿って入力するだけで、初歩的な脆弱性の有無と優先対応箇所をレポートとして出力します。<br><span style="font-size:12px;color:#6c63ff;font-weight:700;">▼ 左の画面をクリックすると、入力画面・結果画面のデモをご覧いただけます。</span></p>
+
+        <ul class="feature-list">
+          <li>主要な脆弱性カテゴリを網羅的にチェック</li>
+          <li>診断結果をレポート形式で出力・共有可能</li>
+          <li>IT担当者・非エンジニアでも直感的に利用可能</li>
+        </ul>
+
+        <div class="effect-box">
+          <strong>期待できる効果：</strong> セキュリティ専門家に依頼する際の参考資料としリスクの所在を可視化します。また、対策の優先順位が明確になり、限られたリソースで効率的なセキュリティ対応が可能になります。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <p class="section-label" style="color:#a78bfa;">WHY CHOOSE US</p>
+      <h2 class="section-title section-title-white">安心してご利用いただける理由</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card fade-up">
+        <div class="trust-icon">🆓</div>
+        <div class="trust-title">無料</div>
+        <div class="trust-desc">ツールの利用料は無料です。すぐにお使いいただけます。※AIの利用料（API利用料）は別途。</div>
+      </div>
+      <div class="trust-card fade-up">
+        <div class="trust-icon">🖥️</div>
+        <div class="trust-title">インストール不要</div>
+        <div class="trust-desc">ブラウザだけで動作。環境構築なしに今すぐ使い始められます。</div>
+      </div>
+      <div class="trust-card fade-up">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-title">データ安全</div>
+        <div class="trust-desc">入力データはサーバーに送信・保存されません。安心してお使いいただけます。</div>
+      </div>
+      <div class="trust-card fade-up">
+        <div class="trust-icon">🇯🇵</div>
+        <div class="trust-title">日本語対応</div>
+        <div class="trust-desc">UI・レポートすべて日本語。専門知識がなくても直感的に操作できます。</div>
+      </div>
+    </div>
+    <p class="price-note fade-up">
+      <strong>【料金について】</strong> ツールの利用料は<strong>無料</strong>です。ただし、AIを利用する一部ツール（ファクトチェッカー等）では、<strong>AIの利用料（API利用料）はお客様にてご負担</strong>いただきます。
+    </p>
+  </div>
+</section>
+
+<!-- ===== FLOW ===== -->
+<section class="section">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <p class="section-label">HOW TO USE</p>
+      <h2 class="section-title">3ステップで使い始める</h2>
+      <p class="section-desc" style="margin:0 auto;">難しい設定は一切不要。今すぐ始められます。</p>
+    </div>
+    <div class="flow-row">
+      <div class="flow-step fade-up">
+        <div class="flow-num">1</div>
+        <div class="flow-title">ツールを選ぶ</div>
+        <div class="flow-desc">課題に合ったツールを選択。生成AIのリスク診断か、WEB脆弱性診断かを選んでください。</div>
+      </div>
+      <div class="flow-step fade-up">
+        <div class="flow-num">2</div>
+        <div class="flow-title">情報を入力する</div>
+        <div class="flow-desc">画面の指示に従い、質問に回答または必要情報を入力。専門知識は不要です。</div>
+      </div>
+      <div class="flow-step fade-up">
+        <div class="flow-num">3</div>
+        <div class="flow-title">結果を確認・活用する</div>
+        <div class="flow-desc">リスクスコアや優先対応箇所をレポートで確認。そのまま社内共有や対策立案にご活用ください。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section-alt">
+  <div class="container" style="max-width:720px;">
+    <div class="fade-up" style="text-align:center;">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">よくあるご質問</h2>
+    </div>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">費用はかかりますか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">ツールの利用料は無料です。お問い合わせいただいた方に無料トライアルのご案内をしております。ただし、AIを利用する一部ツール（ファクトチェッカー等）では、AIの利用料（API利用料）はお客様にてご負担いただきます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">入力したデータはどこに保存されますか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">ツールへの入力データは弊社のサーバーには送信・保存されません。お客様のブラウザ上で処理されるため、機密情報を安心してご利用いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">専門知識がなくても使えますか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">はい、IT担当者でない方でも直感的に操作できるよう設計されています。質問に答えるだけで診断結果やレポートが生成されます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">どのような規模の企業に向いていますか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">中小企業・スタートアップから大企業まで幅広くご活用いただけます。特にAI活用を始めたばかりの企業や、セキュリティ専任担当者が不在の組織に適しています。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">ツール利用後のサポートはありますか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">診断結果の解釈や具体的な対策についてのご相談は、弊社補償サービス担当までお問い合わせください。詳細なコンサルティングも承っております。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta" id="contact">
+  <h2>さらに詳しく知りたい方へ</h2>
+  <p>お問い合わせいただいた方には、無料トライアルをご案内いたします。<br>ツールの詳細・デモのご紹介も承っております。</p>
+
+  <div class="contact-box">
+    <h3>お問い合わせ・ご相談</h3>
+    <p>以下のフォームよりお気軽にご連絡ください。担当者よりご返信いたします。</p>
+
+    <!-- ▼ Netlify Forms（name="contact"）。Netlifyにデプロイすると自動で受信されます -->
+    <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitForm(event)">
+      <!-- Netlifyがフォームを識別するための必須項目 -->
+      <input type="hidden" name="form-name" value="contact" />
+      <!-- スパム対策（honeypot：通常は非表示） -->
+      <p style="display:none;"><label>これは記入しないでください：<input name="bot-field" /></label></p>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">会社名<span class="req">必須</span></label>
+          <input type="text" name="会社名" class="form-input" placeholder="株式会社〇〇" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">お名前<span class="req">必須</span></label>
+          <input type="text" name="お名前" class="form-input" placeholder="山田 太郎" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス<span class="req">必須</span></label>
+        <input type="email" name="email" class="form-input" placeholder="example@company.co.jp" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">関心のあるツール</label>
+        <select name="関心のあるツール" class="form-select form-input">
+          <option value="">選択してください</option>
+          <option>生成AIセキュリティツール集（6種）</option>
+          <option>WEB脆弱性診断ツール</option>
+          <option>両方</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">お問い合わせ内容</label>
+        <textarea name="お問い合わせ内容" class="form-textarea" placeholder="ご質問・ご要望をご記入ください"></textarea>
+      </div>
+      <button type="submit" class="form-submit">送信する →</button>
+      <p id="formMsg" style="display:none;margin-top:14px;font-size:13px;text-align:center;"></p>
+    </form>
+
+    <div class="contact-direct">
+      <p>または直接ご連絡いただくことも可能です</p>
+      <div class="contact-info-row">
+        <div class="contact-info-item">
+          <span class="contact-info-icon">👤</span>
+          <span style="color:rgba(255,255,255,0.6);font-size:13px;">補償サービス担当</span>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">📧</span>
+          <a href="mailto:assurance@gen-x.co.jp">assurance@gen-x.co.jp</a>
+        </div>
+        <div class="contact-info-item">
+          <span class="contact-info-icon">📞</span>
+          <a href="tel:05017215930" style="color:#c4b5fd;">050-1721-5930</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Generative<span>X</span></div>
+        <div class="footer-address">
+          株式会社 GenerativeX（ジェネレーティブエックス）<br>
+          〒100-6327 東京都千代田区丸の内2-4-1 丸の内ビルディング27F<br>
+          <a href="https://gen-x.co.jp" target="_blank">https://gen-x.co.jp</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">利用規約</a>
+        <a href="#contact">お問い合わせ</a>
+        <a href="https://gen-x.co.jp" target="_blank">会社HP</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 GenerativeX Inc. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* FAQ accordion */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  /* Form submit (Netlify Forms AJAX) */
+  async function submitForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.form-submit');
+    const msg = document.getElementById('formMsg');
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '送信中…';
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      });
+      if (res.ok) {
+        form.reset();
+        msg.style.display = 'block';
+        msg.style.color = '#34d399';
+        msg.textContent = '✓ お問い合わせありがとうございます。担当者よりご連絡いたします。';
+      } else {
+        throw new Error('送信に失敗しました');
+      }
+    } catch (err) {
+      msg.style.display = 'block';
+      msg.style.color = '#f87171';
+      msg.innerHTML = '送信に失敗しました。お手数ですが <a href="mailto:assurance@gen-x.co.jp" style="color:#c4b5fd;">assurance@gen-x.co.jp</a> へ直接ご連絡ください。';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  }
+
+  /* Scroll animation */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

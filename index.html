@@ -489,7 +489,23 @@
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 16px;
     }
-    .trust-icon { font-size: 36px; margin-bottom: 14px; }
+    .trust-icon { font-size: 36px; margin-bottom: 14px; color: #ffffff; }
+    .hinomaru {
+      display: inline-block;
+      width: 36px; height: 26px;
+      background: #ffffff;
+      border-radius: 2px;
+      position: relative;
+    }
+    .hinomaru::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 14px; height: 14px;
+      background: #bc002d;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
     .trust-title { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
     .trust-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
@@ -644,6 +660,24 @@
     .form-textarea { min-height: 110px; resize: vertical; }
     .form-select option { background: #1e2240; color: #ffffff; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-checkbox-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .form-checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      cursor: pointer;
+    }
+    .form-checkbox-item input { margin-top: 3px; accent-color: #6c63ff; cursor: pointer; }
     .form-submit {
       width: 100%;
       background: linear-gradient(135deg, #6c63ff, #3d35b0);
@@ -921,7 +955,7 @@
     </div>
     <div class="trust-grid">
       <div class="trust-card fade-up">
-        <div class="trust-icon">🆓</div>
+        <div class="trust-icon">🎁</div>
         <div class="trust-title">無料</div>
         <div class="trust-desc">ツールの利用料は無料です。すぐにお使いいただけます。※AIの利用料（API利用料）は別途。</div>
       </div>
@@ -936,7 +970,7 @@
         <div class="trust-desc">入力データはサーバーに送信・保存されません。安心してお使いいただけます。</div>
       </div>
       <div class="trust-card fade-up">
-        <div class="trust-icon">🇯🇵</div>
+        <div class="trust-icon"><span class="hinomaru"></span></div>
         <div class="trust-title">日本語対応</div>
         <div class="trust-desc">UI・レポートすべて日本語。専門知識がなくても直感的に操作できます。</div>
       </div>
@@ -1043,27 +1077,42 @@
           <input type="text" name="会社名" class="form-input" placeholder="株式会社〇〇" required />
         </div>
         <div class="form-group">
-          <label class="form-label">お名前<span class="req">必須</span></label>
-          <input type="text" name="お名前" class="form-input" placeholder="山田 太郎" required />
+          <label class="form-label">部署<span class="req">必須</span></label>
+          <input type="text" name="部署" class="form-input" placeholder="情報システム部" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">役職<span class="req">必須</span></label>
+          <input type="text" name="役職" class="form-input" placeholder="部長" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">氏名<span class="req">必須</span></label>
+          <input type="text" name="氏名" class="form-input" placeholder="山田 太郎" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">メールアドレス<span class="req">必須</span></label>
+          <input type="email" name="email" class="form-input" placeholder="example@company.co.jp" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">電話番号（携帯）<span class="req">必須</span></label>
+          <input type="tel" name="電話番号" class="form-input" placeholder="090-1234-5678" required />
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">メールアドレス<span class="req">必須</span></label>
-        <input type="email" name="email" class="form-input" placeholder="example@company.co.jp" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label">関心のあるツール</label>
-        <select name="関心のあるツール" class="form-select form-input">
-          <option value="">選択してください</option>
-          <option>生成AIセキュリティツール集（脆弱性診断含む7種・全部見たい）</option>
-          <option>生成AI利用診断</option>
-          <option>ガイドライン作成</option>
-          <option>ハルシネーション対策</option>
-          <option>ファクトチェッカー</option>
-          <option>機密情報チェッカー</option>
-          <option>不正メールチェッカー</option>
-          <option>セキュリティ脆弱性診断</option>
-        </select>
+        <label class="form-label">関心のあるツール<span class="req">必須</span></label>
+        <div class="form-checkbox-group">
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="生成AI利用診断" required />生成AI利用診断</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ガイドライン作成" />ガイドライン作成</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ハルシネーション対策" />ハルシネーション対策</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ファクトチェッカー" />ファクトチェッカー</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="機密情報チェッカー" />機密情報チェッカー</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="不正メールチェッカー" />不正メールチェッカー</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="セキュリティ脆弱性診断" />セキュリティ脆弱性診断</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="なし" />なし</label>
+        </div>
       </div>
       <div class="form-group">
         <label class="form-label">お問い合わせ内容</label>

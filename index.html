@@ -197,7 +197,7 @@
     .section-desc {
       font-size: 15px;
       color: #64748b;
-      max-width: 620px;
+      max-width: 100%;
       line-height: 1.8;
     }
 
@@ -256,11 +256,10 @@
       border-radius: 20px;
       padding: 40px;
       margin-top: 40px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
+      display: flex;
+      justify-content: center;
     }
+    .owasp-card > div { max-width: 640px; width: 100%; }
     .owasp-cat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .owasp-cat-list li {
       background: #f8f7ff;
@@ -797,7 +796,7 @@
       .final-cta { padding: 60px 20px; }
       .footer { padding: 32px 20px; }
       .pain-grid { grid-template-columns: 1fr; }
-      .owasp-card { grid-template-columns: 1fr; padding: 28px 24px; }
+      .owasp-card { padding: 28px 24px; }
       .solution-row { grid-template-columns: 1fr; gap: 32px; }
       .rv-preview-grid { grid-template-columns: 1fr; }
       .rv-layout { grid-template-columns: 1fr; }
@@ -831,8 +830,7 @@
 <nav class="nav">
   <a href="#" class="nav-logo">Generative<span>X</span></a>
   <div class="nav-right">
-    <a href="#contact" class="nav-link">お問い合わせ</a>
-    <a href="#diagnose" class="nav-cta">無料で診断してみる</a>
+    <a href="#contact" class="nav-cta">お問い合わせ</a>
   </div>
 </nav>
 
@@ -841,9 +839,6 @@
   <div class="hero-badge">🛡️ OWASP Top 10 2025 準拠</div>
   <h1>自社サイトの脆弱性、<br>まずは<em>無料で</em>チェック</h1>
   <p class="hero-sub">診断したいサイトのURLを入力するだけ。AIがOWASP Top 10 2025の基準に沿ってリスクを整理し、非専門家にも分かるレポートを生成します。まずは無料の簡易診断から。より詳しい診断をご希望の方はお問い合わせください。</p>
-  <div class="hero-btns">
-    <a href="#diagnose" class="btn-primary">無料で簡易診断してみる →</a>
-  </div>
 </section>
 
 <!-- ===== STATS ===== -->
@@ -869,7 +864,7 @@
   <div class="container">
     <div class="fade-up">
       <p class="section-label">WHY DIAGNOSIS</p>
-      <h2 class="section-title">なぜ、脆弱性診断が<br>必要なのか</h2>
+      <h2 class="section-title">なぜ、脆弱性診断が必要なのか</h2>
       <p class="section-desc">Webサイトやアプリの脆弱性は、規模の大小を問わずすべての企業に存在しうるリスクです。専門の診断を受けたことがない、あるいは前回の診断から時間が経っているサイトほど、気づかないまま放置されているケースが少なくありません。</p>
     </div>
 
@@ -917,10 +912,6 @@
         </a>
         <p class="owasp-note">※正式なカテゴリ・詳細内容は上記の公式サイトをご参照ください。診断レポート内では、対象サイトの状況に応じてAIが該当リスクを整理します。</p>
       </div>
-      <div>
-        <div class="ds-owasp-tag" style="font-size:11px;padding:5px 12px;">● OWASP Top 10 2025 準拠 / 非侵襲レビュー</div>
-        <p class="section-desc" style="margin-top:10px;">本ツールは実際の攻撃・侵入テストは行いません。公開情報をもとに、AIがOWASP Top 10 2025の観点から想定リスクを整理する、教育・防御目的のレビューです。</p>
-      </div>
     </div>
   </div>
 </section>
@@ -937,7 +928,7 @@
     <div class="solution-row fade-up" style="grid-template-columns:1fr;margin-top:40px;">
       <div class="solution-content" style="max-width:none;">
         <span class="solution-number">FREE DIAGNOSIS</span>
-        <h3 class="solution-title">OWASP Top 10 2025 に沿って<br>AIがリスクを整理・レポート化</h3>
+        <h3 class="solution-title">OWASP Top 10 2025 に沿ってAIがリスクを整理・レポート化</h3>
         <p class="solution-desc">URLと簡単な補足情報（自社/他社の別、サイトの種類、扱うデータなど）を入力すると、AIが想定される脆弱性を洗い出し、リスクの高さごとに整理したレポートを生成します。実際の攻撃・侵入テストは行わない非侵襲設計です。</p>
 
         <ul class="feature-list">
@@ -1026,15 +1017,7 @@
             </div>
           </div>
         </div>
-        <p class="rv-caption">▲ 実際のツール画面のイメージ。下のボタンから実際にお試しいただけます。</p>
-
-        <!-- まずは無料で試す -->
-        <div class="bridge-box" style="margin-top:28px;">
-          <p><strong>まずは無料の簡易診断</strong>で現状を確認してみませんか？<br>より詳しい診断（手動レビュー等）をご希望の場合はお問い合わせください。</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;">
-            <a href="https://security-diagnosis-production.up.railway.app" target="_blank" rel="noopener noreferrer" class="btn-tool">無料で簡易診断する →</a>
-          </div>
-        </div>
+        <p class="rv-caption">▲ 実際のツール画面のイメージ。</p>
       </div>
     </div>
   </div>
@@ -1051,7 +1034,7 @@
       <div class="trust-card fade-up">
         <div class="trust-icon">🎁</div>
         <div class="trust-title">無料</div>
-        <div class="trust-desc">ツールの利用料は無料です。すぐにお使いいただけます。※AIの利用料（API利用料）は別途。</div>
+        <div class="trust-desc">無料（デモ版）の脆弱性診断ツールをご案内。すぐにお使いいただけます。</div>
       </div>
       <div class="trust-card fade-up">
         <div class="trust-icon">🖥️</div>
@@ -1170,7 +1153,7 @@
           <span class="faq-q-text">費用はかかりますか？</span>
           <span class="faq-arrow">▼</span>
         </button>
-        <div class="faq-a">脆弱性診断ツールの利用料は無料です。ただし、AIの利用料（API利用料）はお客様にてご負担いただきます。より詳しい診断（手動レビュー等）をご希望の場合は、お問い合わせの上ご案内いたします。</div>
+        <div class="faq-a">お問い合わせいただきましたら、無料（デモ版）の脆弱性診断ツールをご案内いたします。</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -1213,11 +1196,10 @@
 
 <!-- ===== FINAL CTA ===== -->
 <section class="final-cta" id="contact">
-  <h2>詳しい診断をご希望の方へ</h2>
-  <p>無料の簡易診断はもうお試しいただけましたか？<br>より詳しい診断やご相談は、以下のフォームよりお気軽にお問い合わせください。</p>
+  <h2>無料の簡易診断ツールのご希望、その他お問い合わせ</h2>
 
   <div class="contact-box">
-    <h3>お問い合わせ・ご相談</h3>
+    <h3>お問い合わせ</h3>
     <p>以下のフォームよりお気軽にご連絡ください。担当者よりご返信いたします。</p>
 
     <!-- ▼ Netlify Forms（name="contact"）。Netlifyにデプロイすると自動で受信されます -->
@@ -1254,6 +1236,13 @@
         <div class="form-group">
           <label class="form-label">電話番号（携帯）<span class="req">必須</span></label>
           <input type="tel" name="電話番号" class="form-input" placeholder="090-1234-5678" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">無料の簡易診断ツールのご希望（必須）</label>
+        <div class="form-checkbox-group" style="grid-template-columns:1fr 1fr;">
+          <label class="form-checkbox-item"><input type="radio" name="無料簡易診断の希望" value="希望する" required />希望する</label>
+          <label class="form-checkbox-item"><input type="radio" name="無料簡易診断の希望" value="希望しない" required />希望しない</label>
         </div>
       </div>
       <div class="form-group">

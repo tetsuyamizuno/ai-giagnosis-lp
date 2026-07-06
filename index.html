@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIセキュリティツール | 株式会社GenerativeX</title>
-  <meta name="description" content="生成AIセキュリティツール集（脆弱性診断含む7種）。AIリスクから組織を守る無料ツール集。インストール不要・日本語対応。" />
+  <title>無料セキュリティ脆弱性診断 | OWASP Top 10 2025準拠 | 株式会社GenerativeX</title>
+  <meta name="description" content="URLを入力するだけで、AIがOWASP Top 10 2025に沿って自社サイトの脆弱性リスクを無料診断。専門知識不要・インストール不要。より詳しい診断はお問い合わせください。" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -38,6 +38,14 @@
       letter-spacing: -0.01em;
     }
     .nav-logo span { color: #6c63ff; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      text-decoration: none;
+    }
+    .nav-link:hover { color: #6c63ff; }
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -80,15 +88,19 @@
       pointer-events: none;
     }
     .hero-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.25);
       color: rgba(255,255,255,0.85);
       font-size: 12px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.06em;
       padding: 6px 18px;
       border-radius: 20px;
       margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
     }
     .hero h1 {
       font-size: clamp(28px, 5vw, 52px);
@@ -110,28 +122,13 @@
     .hero-sub {
       font-size: 16px;
       color: rgba(255,255,255,0.7);
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-tools {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
       margin-bottom: 40px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
       position: relative;
       z-index: 1;
     }
-    .hero-tool-chip {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 20px;
-    }
-    .hero-sep { color: rgba(255,255,255,0.3); font-size: 18px; }
     .hero-btns {
       display: flex;
       gap: 16px;
@@ -166,6 +163,13 @@
       transition: background 0.2s;
     }
     .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+    .hero-note {
+      margin-top: 18px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      z-index: 1;
+    }
 
     /* ===== SECTION BASE ===== */
     .section { padding: 80px 40px; }
@@ -180,6 +184,7 @@
       text-transform: uppercase;
       margin-bottom: 10px;
     }
+    .section-label-muted { color: #94a3b8; }
     .section-title {
       font-size: clamp(22px, 3.5vw, 34px);
       font-weight: 800;
@@ -192,7 +197,7 @@
     .section-desc {
       font-size: 15px;
       color: #64748b;
-      max-width: 560px;
+      max-width: 620px;
       line-height: 1.8;
     }
 
@@ -244,6 +249,53 @@
     .pain-title { font-size: 16px; font-weight: 700; color: #1e2240; margin-bottom: 10px; }
     .pain-desc { font-size: 13px; color: #64748b; line-height: 1.75; }
 
+    /* ===== OWASP EXPLAINER ===== */
+    .owasp-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .owasp-cat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .owasp-cat-list li {
+      background: #f8f7ff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .owasp-cat-list li b {
+      color: #6c63ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .owasp-link-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      background: #f8f7ff;
+      border: 1px solid #d8d3ff;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: #3d35b0;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .owasp-link-box:hover { background: #efedff; }
+    .owasp-note { font-size: 12.5px; color: #94a3b8; margin-top: 14px; line-height: 1.7; }
+
     /* ===== SOLUTION ===== */
     .solution-row {
       display: grid;
@@ -252,50 +304,6 @@
       align-items: center;
       margin-top: 60px;
     }
-    .solution-row.reverse { direction: rtl; }
-    .solution-row.reverse > * { direction: ltr; }
-    .solution-demo {
-      background: linear-gradient(135deg, #1e2240, #2d3a6e);
-      border-radius: 16px;
-      padding: 32px;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(30,34,64,0.2);
-    }
-    .solution-demo-purple {
-      background: linear-gradient(135deg, #3d2080, #5b3fc0);
-    }
-    .demo-toolbar {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-    .demo-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-    }
-    .demo-mock {
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 14px;
-      margin-bottom: 10px;
-    }
-    .demo-bar {
-      height: 8px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.15);
-      margin-bottom: 8px;
-    }
-    .demo-bar-fill {
-      height: 8px;
-      border-radius: 4px;
-      background: linear-gradient(90deg, #6c63ff, #a78bfa);
-    }
-    .demo-label { font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
     .solution-content {}
     .solution-number {
       display: inline-block;
@@ -349,6 +357,19 @@
       margin-bottom: 24px;
     }
     .effect-box strong { color: #6c63ff; }
+    .bridge-box {
+      background: #1e2240;
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .bridge-box p { font-size: 13.5px; color: rgba(255,255,255,0.8); line-height: 1.7; }
+    .bridge-box p strong { color: #c4b5fd; }
     .btn-tool {
       display: inline-block;
       background: linear-gradient(135deg, #6c63ff, #3d35b0);
@@ -360,28 +381,90 @@
       border-radius: 28px;
       transition: transform 0.2s, box-shadow 0.2s;
       box-shadow: 0 4px 16px rgba(108,99,255,0.3);
+      white-space: nowrap;
     }
     .btn-tool:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.4); }
+    .btn-tool-outline {
+      display: inline-block;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.35);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 11px 28px;
+      border-radius: 28px;
+      white-space: nowrap;
+    }
+    .btn-tool-outline:hover { background: rgba(255,255,255,0.1); }
 
-    /* 6ツールグリッド */
+    /* ===== 診断ツール 実画面レプリカ（security-diagnosis / version-03準拠） ===== */
+    .rv-frame { background: #1a1a1a; border-radius: 14px; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,0.18); font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; }
+    .rv-topbar { background: #1a1a1a; color: #f2f0eb; padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+    .rv-topbar-icon { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg,#1a5a8a,#1a3a6a); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .rv-topbar-title { font-size: 13px; font-weight: 700; }
+    .rv-topbar-badge { display: inline-block; background: rgba(26,90,138,.35); border: 1px solid rgba(26,90,138,.55); color: #fff; font-size: 8.5px; letter-spacing: .08em; padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
+    .rv-layout { display: grid; grid-template-columns: 150px 1fr; }
+    .rv-sidebar { background: #1a1a1a; padding: 16px 14px; border-right: 1px solid rgba(255,255,255,.06); }
+    .rv-sb-section { margin-bottom: 16px; }
+    .rv-sb-label { font-size: 9.5px; font-weight: 700; color: rgba(242,240,235,.75); margin-bottom: 6px; }
+    .rv-sb-field { background: #2a2a2a; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; padding: 6px 8px; font-size: 8.5px; color: rgba(242,240,235,.5); font-family: monospace; }
+    .rv-sb-note { background: rgba(26,90,138,.14); border: 1px solid rgba(26,90,138,.3); border-radius: 6px; padding: 8px; font-size: 8px; color: rgba(242,240,235,.55); line-height: 1.5; }
+    .rv-sb-note b { color: #7eb8e8; }
+    .rv-sb-warn { background: rgba(192,120,32,.12); border: 1px solid rgba(192,120,32,.28); border-radius: 6px; padding: 8px; font-size: 8px; line-height: 1.5; }
+    .rv-sb-warn b { color: #f0b84a; }
+    .rv-sb-warn span { color: rgba(242,240,235,.55); }
+    .rv-main { background: #f8f7f3; padding: 18px 18px 20px; }
+    .rv-field { margin-bottom: 12px; }
+    .rv-field label { display: block; font-size: 10.5px; font-weight: 700; color: #1a1a1a; margin-bottom: 5px; }
+    .rv-input-mock { background: #e8f0f8; border: 1.5px solid #1a5a8a; border-radius: 6px; padding: 8px 10px; font-size: 10.5px; color: #1a1a1a; }
+    .rv-own-grid { display: flex; gap: 8px; }
+    .rv-own-btn { flex: 1; border-radius: 6px; padding: 8px 9px; font-size: 9.5px; border: 1.5px solid #b0a898; background: #fff; color: #8a837a; }
+    .rv-own-btn .t { font-weight: 700; font-size: 10px; display: block; color: #1a1a1a; }
+    .rv-own-btn.on { border-color: #1a5a8a; background: #e8f0f8; }
+    .rv-own-btn.on .t { color: #1a5a8a; }
+    .rv-notes-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+    .rv-select-mock { border: 1.5px solid #b0a898; border-radius: 6px; padding: 6px 8px; font-size: 8.5px; color: #8a837a; background: #fff; }
+    .rv-run { margin-top: 14px; background: linear-gradient(135deg,#1a5a8a,#1a3a6a); color: #fff; text-align: center; padding: 11px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 6px 18px rgba(26,90,138,.3); }
+    .rv-caption { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 14px; }
+
+    /* レポートイメージ */
+    .rv-report { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+    .rv-report-head { background: linear-gradient(135deg,#1a5a8a,#1a3a6a); color: #fff; padding: 14px 18px; }
+    .rv-report-head .tag { font-size: 9px; letter-spacing: .06em; opacity: .8; margin-bottom: 4px; }
+    .rv-report-head .site { font-size: 12px; font-weight: 700; }
+    .rv-report-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+    .rv-vuln-item { border-radius: 8px; padding: 9px 12px; font-size: 10.5px; border-left: 4px solid transparent; }
+    .rv-vuln-item.high { background: #fbeae7; border-left-color: #c03020; }
+    .rv-vuln-item.mid { background: #fbf1e2; border-left-color: #c07820; }
+    .rv-vuln-item.low { background: #e9f1f8; border-left-color: #1a5a8a; }
+    .rv-vuln-top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+    .rv-vuln-badge { font-size: 8.5px; font-weight: 700; color: #fff; padding: 1px 8px; border-radius: 10px; }
+    .high .rv-vuln-badge { background: #c03020; }
+    .mid .rv-vuln-badge { background: #c07820; }
+    .low .rv-vuln-badge { background: #1a5a8a; }
+    .rv-vuln-name { font-weight: 700; font-size: 11px; color: #1a1a1a; }
+    .rv-vuln-desc { color: #4a4540; font-size: 9.5px; line-height: 1.55; }
+
+    /* 6ツールグリッド（おまけ） */
     .tools-mini-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-bottom: 24px;
+      margin-top: 24px;
     }
     .tool-mini {
-      background: #f8f7ff;
+      background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 10px;
-      padding: 12px 14px;
+      padding: 11px 14px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .tool-mini-icon { font-size: 18px; flex-shrink: 0; }
-    .tool-mini-name { font-size: 13px; font-weight: 600; color: #1e2240; }
-    .tool-mini-desc { font-size: 11px; color: #64748b; line-height: 1.4; margin-top: 2px; }
+    .tool-mini-icon { font-size: 16px; flex-shrink: 0; }
+    .tool-mini-name { font-size: 12.5px; font-weight: 600; color: #1e2240; }
+    .tool-mini-desc { font-size: 10.5px; color: #94a3b8; line-height: 1.4; margin-top: 2px; }
     a.tool-mini {
       text-decoration: none;
       cursor: pointer;
@@ -389,8 +472,8 @@
       position: relative;
     }
     a.tool-mini:hover {
-      border-color: #6c63ff;
-      box-shadow: 0 6px 18px rgba(108,99,255,0.18);
+      border-color: #c4b5fd;
+      box-shadow: 0 6px 18px rgba(108,99,255,0.12);
       transform: translateY(-2px);
     }
     a.tool-mini::after {
@@ -405,75 +488,6 @@
       transition: opacity 0.2s;
     }
     a.tool-mini:hover::after { opacity: 1; }
-
-    /* メニュー画面の見本（ブラウザ風モック） */
-    .menu-mock {
-      background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-    }
-    .menu-mock-bar {
-      background: #f1f3f8;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .menu-mock-bar .demo-dot { width: 9px; height: 9px; }
-    .menu-mock-url {
-      flex: 1;
-      margin-left: 8px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      font-size: 9px;
-      color: #94a3b8;
-      padding: 3px 10px;
-      text-align: center;
-    }
-    .menu-mock-body { padding: 22px 20px 24px; }
-    .menu-mock-title {
-      font-size: 15px;
-      font-weight: 800;
-      text-align: center;
-      background: linear-gradient(135deg, #1e2240, #6c63ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 4px;
-    }
-    .menu-mock-sub { font-size: 9px; color: #94a3b8; text-align: center; margin-bottom: 16px; }
-    .menu-mock-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-    }
-    .menu-mock-card {
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 12px 8px;
-      text-align: center;
-      background: #ffffff;
-    }
-    .menu-mock-card .mc-icon { font-size: 16px; margin-bottom: 5px; }
-    .menu-mock-card .mc-name { font-size: 8.5px; font-weight: 700; color: #1e2240; line-height: 1.3; }
-
-    /* 無料の注釈 */
-    .price-note {
-      max-width: 1080px;
-      margin: 28px auto 0;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px;
-      padding: 14px 20px;
-      font-size: 12.5px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.7;
-      text-align: center;
-    }
-    .price-note strong { color: #c4b5fd; }
 
     /* ===== TRUST ===== */
     .trust-grid {
@@ -678,6 +692,7 @@
       cursor: pointer;
     }
     .form-checkbox-item input { margin-top: 3px; accent-color: #6c63ff; cursor: pointer; }
+    .form-checkbox-item.is-main { font-weight: 700; color: #ffffff; }
     .form-submit {
       width: 100%;
       background: linear-gradient(135deg, #6c63ff, #3d35b0);
@@ -782,8 +797,10 @@
       .final-cta { padding: 60px 20px; }
       .footer { padding: 32px 20px; }
       .pain-grid { grid-template-columns: 1fr; }
+      .owasp-card { grid-template-columns: 1fr; padding: 28px 24px; }
       .solution-row { grid-template-columns: 1fr; gap: 32px; }
-      .solution-row.reverse { direction: ltr; }
+      .rv-preview-grid { grid-template-columns: 1fr; }
+      .rv-layout { grid-template-columns: 1fr; }
       .trust-grid { grid-template-columns: repeat(2, 1fr); }
       .flow-row { grid-template-columns: 1fr; gap: 40px; }
       .flow-row::before { display: none; }
@@ -791,8 +808,9 @@
       .contact-box { padding: 32px 24px; }
       .form-row { grid-template-columns: 1fr; }
       .footer-top { flex-direction: column; gap: 24px; }
-      .hero-tools { flex-direction: column; gap: 8px; }
-      .hero-sep { display: none; }
+      .bridge-box { flex-direction: column; align-items: stretch; text-align: center; }
+      .nav-right { gap: 10px; }
+      .nav-link { display: none; }
     }
 
     /* ===== ANIMATION ===== */
@@ -812,134 +830,210 @@
 <!-- ===== NAV ===== -->
 <nav class="nav">
   <a href="#" class="nav-logo">Generative<span>X</span></a>
-  <a href="#contact" class="nav-cta">お問い合わせ・ご相談</a>
+  <div class="nav-right">
+    <a href="#contact" class="nav-link">お問い合わせ</a>
+    <a href="#diagnose" class="nav-cta">無料で診断してみる</a>
+  </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <h1>生成AI時代のセキュリティ対策<br>お役立ちツールのご案内</h1>
-  <p class="hero-sub">生成AIの活用が加速する今、セキュリティ対策は待ったなしです。</p>
-
+  <div class="hero-badge">🛡️ OWASP Top 10 2025 準拠</div>
+  <h1>自社サイトの脆弱性、<br>まずは<em>無料で</em>チェック</h1>
+  <p class="hero-sub">診断したいサイトのURLを入力するだけ。AIがOWASP Top 10 2025の基準に沿ってリスクを整理し、非専門家にも分かるレポートを生成します。まずは無料の簡易診断から。より詳しい診断をご希望の方はお問い合わせください。</p>
+  <div class="hero-btns">
+    <a href="#diagnose" class="btn-primary">無料で簡易診断してみる →</a>
+  </div>
 </section>
 
 <!-- ===== STATS ===== -->
 <div class="stats-strip">
   <div class="stats-grid">
     <div class="fade-up">
-      <div class="stat-num">2.4<span style="font-size:22px;">倍</span></div>
-      <div class="stat-label">AIが関与するサイバーインシデント<br>前年比増加率（IPA調査）</div>
+      <div class="stat-num">8<span style="font-size:22px;">割超</span></div>
+      <div class="stat-label">自社Webサイトの脆弱性診断を<br>一度も実施したことがない中小企業の割合の目安</div>
     </div>
     <div class="fade-up">
-      <div class="stat-num">67<span style="font-size:22px;">%</span></div>
-      <div class="stat-label">中小企業のうちAI利用に関する<br>社内ガイドラインが未整備の割合</div>
+      <div class="stat-num">既知</div>
+      <div class="stat-label">サイバー攻撃の多くは、既に知られている<br>脆弱性の放置が突破口になっていると言われています</div>
     </div>
     <div class="fade-up">
-      <div class="stat-num">40<span style="font-size:22px;">%</span></div>
-      <div class="stat-label">不正メールのうちAI生成による<br>高精度な文章を使用している割合</div>
+      <div class="stat-num">無料</div>
+      <div class="stat-label">まずは無料の簡易診断で現状把握。<br>詳しい診断はお問い合わせから</div>
     </div>
   </div>
 </div>
 
-<!-- ===== ENVIRONMENT（取り巻く環境） ===== -->
+<!-- ===== 背景（なぜ脆弱性診断が必要か） ===== -->
 <section class="section">
   <div class="container">
     <div class="fade-up">
-      <p class="section-label">CURRENT SITUATION</p>
-      <h2 class="section-title">生成AIを取り巻く<br>セキュリティの現状</h2>
-      <p class="section-desc">生成AIの業務活用が急速に広がる中、セキュリティリスクも同時に増大しています。経済産業省・IPA（情報処理推進機構）も、AIに起因するインシデントへの対策を強く推奨しており、企業規模を問わず早急な対応が求められています。</p>
+      <p class="section-label">WHY DIAGNOSIS</p>
+      <h2 class="section-title">なぜ、脆弱性診断が<br>必要なのか</h2>
+      <p class="section-desc">Webサイトやアプリの脆弱性は、規模の大小を問わずすべての企業に存在しうるリスクです。専門の診断を受けたことがない、あるいは前回の診断から時間が経っているサイトほど、気づかないまま放置されているケースが少なくありません。</p>
     </div>
 
-    <!-- Pain Grid -->
     <div class="pain-grid" id="pain">
       <div class="pain-card fade-up">
-        <div class="pain-icon">🔓</div>
-        <div class="pain-title">AIで情報漏洩しないか不安</div>
-        <div class="pain-desc">業務で生成AIを使う際、機密情報や個人情報を誤って入力してしまうリスクがあります。一度送信したデータは取り消せません。</div>
-      </div>
-      <div class="pain-card fade-up">
         <div class="pain-icon">⚠️</div>
-        <div class="pain-title">サービスの脆弱性を把握できていない</div>
+        <div class="pain-title">脆弱性を把握できていない</div>
         <div class="pain-desc">自社のWEBサイトやシステムにどんな脆弱性があるか、専門知識がないと把握が難しく、気づかないまま放置されがちです。</div>
       </div>
       <div class="pain-card fade-up">
-        <div class="pain-icon">📋</div>
-        <div class="pain-title">社内ガイドラインが整備できていない</div>
-        <div class="pain-desc">AI利用が広がっているのに、社内のルールや指針が追いついていない。ガイドライン作成に時間やリソースをかけられない状況です。</div>
+        <div class="pain-icon">🎯</div>
+        <div class="pain-title">攻撃対象は大企業だけではない</div>
+        <div class="pain-desc">セキュリティ対策が手薄になりやすい中小規模のサイトも、既知の脆弱性を狙った攻撃の対象になり得ます。</div>
+      </div>
+      <div class="pain-card fade-up">
+        <div class="pain-icon">💸</div>
+        <div class="pain-title">事後対応はコストが大きい</div>
+        <div class="pain-desc">情報漏洩やサービス停止が起きてからの対応は、事前診断・対策に比べて時間・費用・信用の面で負担が大きくなります。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SOLUTIONS ===== -->
-<section class="section section-alt" id="tools">
+<!-- ===== OWASP Top 10 2025 とは ===== -->
+<section class="section section-alt">
   <div class="container">
-    <div class="fade-up" style="text-align:center;margin-bottom:16px;">
-      <p class="section-label">OUR TOOLS</p>
-      <h2 class="section-title">GenerativeXが提供する<br>AIセキュリティツール</h2>
-      <p class="section-desc" style="margin:0 auto;">ブラウザだけで動作し、インストール不要。すぐに使い始められます。</p>
+    <div class="fade-up">
+      <p class="section-label">STANDARD</p>
+      <h2 class="section-title">OWASP Top 10 2025とは</h2>
+      <p class="section-desc">OWASP（Open Worldwide Application Security Project）は、Webアプリケーションセキュリティの向上を目的とする世界的な非営利プロジェクトです。「OWASP Top 10」は、Webアプリにおいて特に重大とされるセキュリティリスクをまとめたもので、世界中の開発者・診断ツールが参照する事実上の標準となっています。本ツールはこの最新版「Top 10 2025」を診断の基準として採用しています。</p>
     </div>
 
-    <!-- 生成AIセキュリティツール集（7種・脆弱性診断含む） -->
-    <div class="solution-row fade-up" style="grid-template-columns:1fr;">
-      <div class="solution-content" style="max-width:none;">
-        <span class="solution-number">ALL-IN-ONE</span>
-        <h3 class="solution-title">生成AI活用を安全にするための<br>7つのツール</h3>
-        <p class="solution-desc">生成AIを業務で安全に使うために必要な機能と、自社サイト・システムの脆弱性診断を、ひとつのツール集としてご提供。導入初期から運用フェーズまで、AIガバナンスの土台となります。<br><span style="font-size:12px;color:#6c63ff;font-weight:700;">▼ 各ツールをクリックすると、入力画面・結果画面のデモをご覧いただけます。</span></p>
+    <div class="owasp-card fade-up">
+      <div>
+        <p class="section-desc" style="margin-bottom:14px;">代表的に取り上げられるリスク領域には、たとえば次のようなものがあります（例）。</p>
+        <ul class="owasp-cat-list">
+          <li><b>ACCESS</b> アクセス制御の不備（権限のないデータ・機能への到達）</li>
+          <li><b>INJECT</b> インジェクション（SQL/コマンド注入など）</li>
+          <li><b>AUTH</b> 認証・認可の不備</li>
+          <li><b>CRYPTO</b> 暗号化・データ保護の不備</li>
+          <li><b>CONFIG</b> セキュリティ設定のミス</li>
+        </ul>
+        <a href="https://owasp.org/Top10/2025/" target="_blank" rel="noopener noreferrer" class="owasp-link-box">
+          🔗 OWASP Top 10 2025 公式サイトを見る（owasp.org）
+        </a>
+        <p class="owasp-note">※正式なカテゴリ・詳細内容は上記の公式サイトをご参照ください。診断レポート内では、対象サイトの状況に応じてAIが該当リスクを整理します。</p>
+      </div>
+      <div>
+        <div class="ds-owasp-tag" style="font-size:11px;padding:5px 12px;">● OWASP Top 10 2025 準拠 / 非侵襲レビュー</div>
+        <p class="section-desc" style="margin-top:10px;">本ツールは実際の攻撃・侵入テストは行いません。公開情報をもとに、AIがOWASP Top 10 2025の観点から想定リスクを整理する、教育・防御目的のレビューです。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="tools-mini-grid">
-          <a class="tool-mini" href="demo/ai-shindan.html" target="_blank">
-            <div class="tool-mini-icon">📋</div>
-            <div>
-              <div class="tool-mini-name">生成AI利用診断</div>
-              <div class="tool-mini-desc">組織・個人の生成AI活用レベルを多角的に診断。現状のスコアとギャップを可視化し、優先すべき改善アクションを具体的に提示します。</div>
-            </div>
-          </a>
-          <a class="tool-mini" href="demo/guideline.html" target="_blank">
-            <div class="tool-mini-icon">📄</div>
-            <div>
-              <div class="tool-mini-name">ガイドライン作成</div>
-              <div class="tool-mini-desc">企業・部門向けの生成AI利用ガイドラインをワンストップで生成。法令・倫理・セキュリティ要件を踏まえたポリシー文書を素早く作成できます。</div>
-            </div>
-          </a>
-          <a class="tool-mini" href="demo/hallucination.html" target="_blank">
-            <div class="tool-mini-icon">🔍</div>
-            <div>
-              <div class="tool-mini-name">ハルシネーション対策</div>
-              <div class="tool-mini-desc">AIが事実と異なる情報を生成する「幻覚」を最小化。信頼性の高い出力を引き出すプロンプト設計パターンと検証フローを提供します。</div>
-            </div>
-          </a>
-          <a class="tool-mini" href="demo/factcheck.html" target="_blank">
-            <div class="tool-mini-icon">✅</div>
-            <div>
-              <div class="tool-mini-name">ファクトチェッカー</div>
-              <div class="tool-mini-desc">AIが生成したテキストや入力情報の事実確認を自動化。根拠の有無・信頼度スコアをリアルタイムで判定し、誤情報の拡散を防止します。</div>
-            </div>
-          </a>
-          <a class="tool-mini" href="demo/confidential.html" target="_blank">
-            <div class="tool-mini-icon">🔒</div>
-            <div>
-              <div class="tool-mini-name">機密情報チェッカー</div>
-              <div class="tool-mini-desc">AIプロンプトに含まれる個人情報・社外秘・機密データを自動検出。入力前のスクリーニングで情報漏洩リスクをゼロに近づけます。</div>
-            </div>
-          </a>
-          <a class="tool-mini" href="demo/mail-check.html" target="_blank">
-            <div class="tool-mini-icon">📧</div>
-            <div>
-              <div class="tool-mini-name">不正メールチェッカー</div>
-              <div class="tool-mini-desc">サイバー攻撃が疑われるメールをAIがチェック。メールをコピー＆ペーストするとAIが不正事例、怪しいドメインなどから総合的に評価します。</div>
-            </div>
-          </a>
-          <a class="tool-mini" href="demo/vulnerability.html" target="_blank">
-            <div class="tool-mini-icon">🛡️</div>
-            <div>
-              <div class="tool-mini-name">セキュリティ脆弱性診断</div>
-              <div class="tool-mini-desc">サイト/アプリのURLを入力すると、OWASP Top 10 2025 に沿ってAIが想定リスクを整理。非専門家にも分かるレポートを生成します（非侵襲・攻撃はしません）。</div>
-            </div>
-          </a>
+<!-- ===== メインツール：セキュリティ脆弱性診断 ===== -->
+<section class="section" id="diagnose">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:16px;">
+      <p class="section-label">MAIN TOOL</p>
+      <h2 class="section-title">セキュリティ脆弱性診断<br>— まずは無料で</h2>
+      <p class="section-desc" style="margin:0 auto;">診断したいサイトのURLを入力するだけ。ブラウザだけで動作し、インストール不要です。</p>
+    </div>
+
+    <div class="solution-row fade-up" style="grid-template-columns:1fr;margin-top:40px;">
+      <div class="solution-content" style="max-width:none;">
+        <span class="solution-number">FREE DIAGNOSIS</span>
+        <h3 class="solution-title">OWASP Top 10 2025 に沿って<br>AIがリスクを整理・レポート化</h3>
+        <p class="solution-desc">URLと簡単な補足情報（自社/他社の別、サイトの種類、扱うデータなど）を入力すると、AIが想定される脆弱性を洗い出し、リスクの高さごとに整理したレポートを生成します。実際の攻撃・侵入テストは行わない非侵襲設計です。</p>
+
+        <ul class="feature-list">
+          <li>URLを入力するだけ。専門知識は不要</li>
+          <li>「自社のもの」「他社のもの」を選んで用途に合わせたレポートに</li>
+          <li>業種・扱うデータ・規模などの補足メモで診断精度が向上</li>
+          <li>OWASP Top 10 2025の観点でリスクを高・中・低に整理</li>
+        </ul>
+
+        <!-- 実際のツール画面レプリカ -->
+        <div class="rv-frame">
+          <div class="rv-topbar">
+            <div class="rv-topbar-icon">🛡️</div>
+            <div class="rv-topbar-title">セキュリティ脆弱性診断<span class="rv-topbar-badge">ver03</span></div>
+          </div>
+          <div class="rv-layout">
+            <aside class="rv-sidebar">
+              <div class="rv-sb-section">
+                <div class="rv-sb-label">Gemini APIキー</div>
+                <div class="rv-sb-field">AIza••••••••••</div>
+              </div>
+              <div class="rv-sb-section">
+                <div class="rv-sb-label">使用モデル</div>
+                <div class="rv-sb-field" style="color:rgba(242,240,235,.85);">Gemini 3.5 Flash</div>
+              </div>
+              <div class="rv-sb-section">
+                <div class="rv-sb-label">AI診断</div>
+                <div class="rv-sb-note"><b>Gemini で分析</b><br>リスク評価・原因・対応策に加え、実在する攻撃事例と損害額の推計を含むレポートを生成します。</div>
+              </div>
+              <div class="rv-sb-section">
+                <div class="rv-sb-label">注意事項</div>
+                <div class="rv-sb-warn"><b>このツールは攻撃しません。</b><span>公開情報をもとにAIがリスクを整理する教育・防御目的のレビューです。</span></div>
+              </div>
+            </aside>
+            <main class="rv-main">
+              <div class="rv-field">
+                <label>診断するサイト / アプリのURL</label>
+                <div class="rv-input-mock">https://example-shop.co.jp</div>
+              </div>
+              <div class="rv-field">
+                <label>これは誰のサイト / アプリですか？</label>
+                <div class="rv-own-grid">
+                  <div class="rv-own-btn on"><span class="t">自社のもの</span>改善提案中心の実務レポート</div>
+                  <div class="rv-own-btn"><span class="t">他社のもの</span>教育・防御目的（免責付き）</div>
+                </div>
+              </div>
+              <div class="rv-field">
+                <label>診断対象の補足メモ<span style="font-weight:400;color:#8a837a;font-size:9px;"> 任意</span></label>
+                <div class="rv-notes-row">
+                  <div class="rv-select-mock">サイト/アプリの種類を選択…</div>
+                  <div class="rv-select-mock">扱うデータを選択…</div>
+                </div>
+                <div class="rv-notes-row">
+                  <div class="rv-select-mock">おおよその規模を選択…</div>
+                  <div class="rv-select-mock">ログイン/決済機能を選択…</div>
+                </div>
+              </div>
+              <div class="rv-run">レポートを生成する</div>
+            </main>
+          </div>
         </div>
 
-        <div class="effect-box">
-          <strong>期待できる効果：</strong> 専任のAIガバナンス担当者がいなくても、現場レベルでセキュリティ意識を高め、情報事故を未然に防ぐ環境を構築できます。自社サイトの脆弱性も同じツール集の中で可視化できるため、対策の優先順位づけがしやすくなります。
+        <div style="margin-top:20px;">
+          <div class="rv-report">
+            <div class="rv-report-head">
+              <div class="tag">診断レポート（生成イメージ）</div>
+              <div class="site">診断対象：https://example-shop.co.jp</div>
+            </div>
+            <div class="rv-report-body">
+              <div class="rv-vuln-item high">
+                <div class="rv-vuln-top"><span class="rv-vuln-badge">高リスク</span><span class="rv-vuln-name">SQLインジェクション</span></div>
+                <div class="rv-vuln-desc">検索フォームにSQLインジェクションの脆弱性が想定されます。DBへの不正アクセスにつながるリスクがあります。</div>
+              </div>
+              <div class="rv-vuln-item high">
+                <div class="rv-vuln-top"><span class="rv-vuln-badge">高リスク</span><span class="rv-vuln-name">XSS（クロスサイトスクリプティング）</span></div>
+                <div class="rv-vuln-desc">入力フォームでスクリプト挿入が可能な構成です。ユーザー情報が盗まれるリスクがあります。</div>
+              </div>
+              <div class="rv-vuln-item mid">
+                <div class="rv-vuln-top"><span class="rv-vuln-badge">中リスク</span><span class="rv-vuln-name">HTTPSの設定不備</span></div>
+                <div class="rv-vuln-desc">一部ページで暗号化されていない通信が想定されます。</div>
+              </div>
+              <div class="rv-vuln-item low">
+                <div class="rv-vuln-top"><span class="rv-vuln-badge">低リスク</span><span class="rv-vuln-name">セキュリティヘッダーの未設定</span></div>
+                <div class="rv-vuln-desc">X-Frame-Options等のヘッダーが未設定の可能性があります。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="rv-caption">▲ 実際のツール画面のイメージ。下のボタンから実際にお試しいただけます。</p>
+
+        <!-- まずは無料で試す -->
+        <div class="bridge-box" style="margin-top:28px;">
+          <p><strong>まずは無料の簡易診断</strong>で現状を確認してみませんか？<br>より詳しい診断（手動レビュー等）をご希望の場合はお問い合わせください。</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://security-diagnosis-production.up.railway.app" target="_blank" rel="noopener noreferrer" class="btn-tool">無料で簡易診断する →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -975,9 +1069,6 @@
         <div class="trust-desc">UI・レポートすべて日本語。専門知識がなくても直感的に操作できます。</div>
       </div>
     </div>
-    <p class="price-note fade-up">
-      <strong>【料金について】</strong> ツールの利用料は<strong>無料</strong>です。ただし、AIを利用する一部ツール（ファクトチェッカー等）では、<strong>AIの利用料（API利用料）はお客様にてご負担</strong>いただきます。
-    </p>
   </div>
 </section>
 
@@ -986,31 +1077,88 @@
   <div class="container">
     <div class="fade-up" style="text-align:center;">
       <p class="section-label">HOW TO USE</p>
-      <h2 class="section-title">3ステップで使い始める</h2>
-      <p class="section-desc" style="margin:0 auto;">難しい設定は一切不要。今すぐ始められます。</p>
+      <h2 class="section-title">3ステップで診断できる</h2>
+      <p class="section-desc" style="margin:0 auto;">難しい設定は一切不要。今すぐ無料で始められます。</p>
     </div>
     <div class="flow-row">
       <div class="flow-step fade-up">
         <div class="flow-num">1</div>
-        <div class="flow-title">ツールを選ぶ</div>
-        <div class="flow-desc">7つのツールの中から、課題に合ったものを選択。生成AIのリスク診断から、WEB脆弱性診断まで揃っています。</div>
+        <div class="flow-title">URLを入力する</div>
+        <div class="flow-desc">診断したいサイト/アプリのURLを入力。自社/他社の別も選択します。</div>
       </div>
       <div class="flow-step fade-up">
         <div class="flow-num">2</div>
-        <div class="flow-title">情報を入力する</div>
-        <div class="flow-desc">画面の指示に従い、質問に回答または必要情報を入力。専門知識は不要です。</div>
+        <div class="flow-title">AIが分析する</div>
+        <div class="flow-desc">OWASP Top 10 2025の基準に沿って、AIが想定リスクを整理します。</div>
       </div>
       <div class="flow-step fade-up">
         <div class="flow-num">3</div>
-        <div class="flow-title">結果を確認・活用する</div>
-        <div class="flow-desc">リスクスコアや優先対応箇所をレポートで確認。そのまま社内共有や対策立案にご活用ください。</div>
+        <div class="flow-title">レポートを確認する</div>
+        <div class="flow-desc">リスクの高さごとに整理されたレポートを確認。より詳しい診断が必要な場合はお問い合わせください。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FAQ ===== -->
+<!-- ===== おまけ：お役立ちAIツール ===== -->
 <section class="section section-alt">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:8px;">
+      <p class="section-label section-label-muted">BONUS TOOLS</p>
+      <h2 class="section-title" style="font-size:clamp(18px,2.6vw,24px);">脆弱性診断とあわせて使える<br>セキュリティ対策お役立ちAIツール</h2>
+      <p class="section-desc" style="margin:0 auto;font-size:13.5px;">脆弱性診断だけでなく、生成AIを安全に使うためのお役立ちツールもご用意しています。おまけとしてどうぞ。</p>
+    </div>
+
+    <div class="tools-mini-grid">
+      <a class="tool-mini" href="demo/ai-shindan.html" target="_blank">
+        <div class="tool-mini-icon">📋</div>
+        <div>
+          <div class="tool-mini-name">生成AI利用診断</div>
+          <div class="tool-mini-desc">組織・個人の生成AI活用レベルを診断</div>
+        </div>
+      </a>
+      <a class="tool-mini" href="demo/guideline.html" target="_blank">
+        <div class="tool-mini-icon">📄</div>
+        <div>
+          <div class="tool-mini-name">ガイドライン作成</div>
+          <div class="tool-mini-desc">生成AI利用ガイドラインを自動生成</div>
+        </div>
+      </a>
+      <a class="tool-mini" href="demo/hallucination.html" target="_blank">
+        <div class="tool-mini-icon">🔍</div>
+        <div>
+          <div class="tool-mini-name">ハルシネーション対策</div>
+          <div class="tool-mini-desc">AIの誤情報生成を最小化するプロンプト設計</div>
+        </div>
+      </a>
+      <a class="tool-mini" href="demo/factcheck.html" target="_blank">
+        <div class="tool-mini-icon">✅</div>
+        <div>
+          <div class="tool-mini-name">ファクトチェッカー</div>
+          <div class="tool-mini-desc">AI生成テキストの事実確認を自動化</div>
+        </div>
+      </a>
+      <a class="tool-mini" href="demo/confidential.html" target="_blank">
+        <div class="tool-mini-icon">🔒</div>
+        <div>
+          <div class="tool-mini-name">機密情報チェッカー</div>
+          <div class="tool-mini-desc">プロンプト内の機密・個人情報を自動検出</div>
+        </div>
+      </a>
+      <a class="tool-mini" href="demo/mail-check.html" target="_blank">
+        <div class="tool-mini-icon">📧</div>
+        <div>
+          <div class="tool-mini-name">不正メールチェッカー</div>
+          <div class="tool-mini-desc">怪しいメールをAIが総合的に評価</div>
+        </div>
+      </a>
+    </div>
+    <p class="owasp-note" style="text-align:center;margin-top:20px;">▲ 各ツールをクリックすると、入力画面・結果画面のデモをご覧いただけます。</p>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section">
   <div class="container" style="max-width:720px;">
     <div class="fade-up" style="text-align:center;">
       <p class="section-label">FAQ</p>
@@ -1022,35 +1170,42 @@
           <span class="faq-q-text">費用はかかりますか？</span>
           <span class="faq-arrow">▼</span>
         </button>
-        <div class="faq-a">ツールの利用料は無料です。お問い合わせいただいた方に無料トライアルのご案内をしております。ただし、AIを利用する一部ツール（ファクトチェッカー等）では、AIの利用料（API利用料）はお客様にてご負担いただきます。</div>
+        <div class="faq-a">脆弱性診断ツールの利用料は無料です。ただし、AIの利用料（API利用料）はお客様にてご負担いただきます。より詳しい診断（手動レビュー等）をご希望の場合は、お問い合わせの上ご案内いたします。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">無料の簡易診断と、詳しい診断は何が違いますか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">無料の簡易診断は、URLと簡単な補足情報をもとにAIが公開情報から想定リスクを整理するものです。より深い調査や個別の相談をご希望の場合は、お問い合わせいただいた内容に応じて詳しい診断をご案内します。</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-text">入力したデータはどこに保存されますか？</span>
           <span class="faq-arrow">▼</span>
         </button>
-        <div class="faq-a">ツールへの入力データは弊社のサーバーには送信・保存されません。お客様のブラウザ上で処理されるため、機密情報を安心してご利用いただけます。</div>
+        <div class="faq-a">ツールへの入力データは弊社のサーバーには保存されません。安心してご利用いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">OWASP Top 10 2025とは何ですか？</span>
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">Webアプリケーションセキュリティの向上を目的とする国際的な非営利プロジェクトOWASPが公開する、Webアプリにおいて特に重大とされるセキュリティリスクの一覧です。世界中の開発者・診断ツールが参照する事実上の標準となっており、本ツールもこの基準を採用しています。詳細は<a href="https://owasp.org/Top10/2025/" target="_blank" rel="noopener noreferrer" style="color:#6c63ff;">公式サイト</a>をご参照ください。</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           <span class="faq-q-text">専門知識がなくても使えますか？</span>
           <span class="faq-arrow">▼</span>
         </button>
-        <div class="faq-a">はい、IT担当者でない方でも直感的に操作できるよう設計されています。質問に答えるだけで診断結果やレポートが生成されます。</div>
+        <div class="faq-a">はい、IT担当者でない方でも直感的に操作できるよう設計されています。URLを入力するだけで診断レポートが生成されます。</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">どのような規模の企業に向いていますか？</span>
+          <span class="faq-q-text">生成AI活用に関する他のツールも使えますか？</span>
           <span class="faq-arrow">▼</span>
         </button>
-        <div class="faq-a">中小企業・スタートアップから大企業まで幅広くご活用いただけます。特にAI活用を始めたばかりの企業や、セキュリティ専任担当者が不在の組織に適しています。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">ツール利用後のサポートはありますか？</span>
-          <span class="faq-arrow">▼</span>
-        </button>
-        <div class="faq-a">診断結果の解釈や具体的な対策についてのご相談は、弊社補償サービス担当までお問い合わせください。詳細なコンサルティングも承っております。</div>
+        <div class="faq-a">はい。脆弱性診断のほかに、生成AI利用診断・ガイドライン作成・ハルシネーション対策・ファクトチェッカー・機密情報チェッカー・不正メールチェッカーもおまけとしてご利用いただけます。</div>
       </div>
     </div>
   </div>
@@ -1058,8 +1213,8 @@
 
 <!-- ===== FINAL CTA ===== -->
 <section class="final-cta" id="contact">
-  <h2>さらに詳しく知りたい方へ</h2>
-  <p>お問い合わせいただいた方には、無料トライアルをご案内いたします。<br>ツールの詳細・デモのご紹介も承っております。</p>
+  <h2>詳しい診断をご希望の方へ</h2>
+  <p>無料の簡易診断はもうお試しいただけましたか？<br>より詳しい診断やご相談は、以下のフォームよりお気軽にお問い合わせください。</p>
 
   <div class="contact-box">
     <h3>お問い合わせ・ご相談</h3>
@@ -1102,15 +1257,15 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">関心のあるツール<span class="req">必須</span></label>
+        <label class="form-label">関心のある内容（複数選択可）<span class="req">必須</span></label>
         <div class="form-checkbox-group">
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="生成AI利用診断" required />生成AI利用診断</label>
+          <label class="form-checkbox-item is-main"><input type="checkbox" name="関心のあるツール" value="セキュリティ脆弱性診断" required />セキュリティ脆弱性診断</label>
+          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="生成AI利用診断" />生成AI利用診断</label>
           <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ガイドライン作成" />ガイドライン作成</label>
           <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ハルシネーション対策" />ハルシネーション対策</label>
           <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ファクトチェッカー" />ファクトチェッカー</label>
           <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="機密情報チェッカー" />機密情報チェッカー</label>
           <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="不正メールチェッカー" />不正メールチェッカー</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="セキュリティ脆弱性診断" />セキュリティ脆弱性診断</label>
           <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="なし" />なし</label>
         </div>
       </div>
@@ -1220,6 +1375,5 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9822663bd5884338aeef327d94633520"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

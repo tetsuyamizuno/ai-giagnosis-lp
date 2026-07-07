@@ -427,66 +427,26 @@
     .rv-run { margin-top: 14px; background: linear-gradient(135deg,#1a5a8a,#1a3a6a); color: #fff; text-align: center; padding: 11px; border-radius: 8px; font-size: 11px; font-weight: 700; box-shadow: 0 6px 18px rgba(26,90,138,.3); }
     .rv-caption { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 14px; }
 
-    /* レポートイメージ */
+    /* レポートイメージ（実際のレポート画面を模したモック。詳細部分はぼかして表示） */
     .rv-report { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-    .rv-report-head { background: linear-gradient(135deg,#1a5a8a,#1a3a6a); color: #fff; padding: 14px 18px; }
-    .rv-report-head .tag { font-size: 9px; letter-spacing: .06em; opacity: .8; margin-bottom: 4px; }
-    .rv-report-head .site { font-size: 12px; font-weight: 700; }
-    .rv-report-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
-    .rv-vuln-item { border-radius: 8px; padding: 9px 12px; font-size: 10.5px; border-left: 4px solid transparent; }
-    .rv-vuln-item.high { background: #fbeae7; border-left-color: #c03020; }
-    .rv-vuln-item.mid { background: #fbf1e2; border-left-color: #c07820; }
-    .rv-vuln-item.low { background: #e9f1f8; border-left-color: #1a5a8a; }
-    .rv-vuln-top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-    .rv-vuln-badge { font-size: 8.5px; font-weight: 700; color: #fff; padding: 1px 8px; border-radius: 10px; }
-    .high .rv-vuln-badge { background: #c03020; }
-    .mid .rv-vuln-badge { background: #c07820; }
-    .low .rv-vuln-badge { background: #1a5a8a; }
-    .rv-vuln-name { font-weight: 700; font-size: 11px; color: #1a1a1a; }
-    .rv-vuln-desc { color: #4a4540; font-size: 9.5px; line-height: 1.55; }
-
-    /* 6ツールグリッド（おまけ） */
-    .tools-mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 24px;
-    }
-    .tool-mini {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 11px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .tool-mini-icon { font-size: 16px; flex-shrink: 0; }
-    .tool-mini-name { font-size: 12.5px; font-weight: 600; color: #1e2240; }
-    .tool-mini-desc { font-size: 10.5px; color: #94a3b8; line-height: 1.4; margin-top: 2px; }
-    a.tool-mini {
-      text-decoration: none;
-      cursor: pointer;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-      position: relative;
-    }
-    a.tool-mini:hover {
-      border-color: #c4b5fd;
-      box-shadow: 0 6px 18px rgba(108,99,255,0.12);
-      transform: translateY(-2px);
-    }
-    a.tool-mini::after {
-      content: 'デモ →';
-      position: absolute;
-      right: 10px;
-      bottom: 8px;
-      font-size: 9px;
-      font-weight: 700;
-      color: #a78bfa;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    a.tool-mini:hover::after { opacity: 1; }
+    .rv-report-topbar { background: #f8f7f3; border-bottom: 1px solid #e2e8f0; padding: 10px 18px; }
+    .rv-report-savebtn { display: inline-block; background: #1a5a8a; color: #fff; font-size: 9.5px; font-weight: 700; padding: 5px 12px; border-radius: 6px; }
+    .rv-report-body2 { padding: 20px 22px 24px; }
+    .rv-report-title { font-size: 15px; font-weight: 800; color: #1a1a1a; padding-bottom: 10px; border-bottom: 2px solid #1a7a6e; margin-bottom: 14px; }
+    .rv-blur { filter: blur(3px); user-select: none; }
+    .rv-score-box { background: #16202c; border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+    .rv-score-label { color: rgba(255,255,255,.7); font-size: 10.5px; font-weight: 700; text-align: center; margin-bottom: 8px; }
+    .rv-score-row { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 8px; }
+    .rv-score-num { color: #3ddc97; font-size: 30px; font-weight: 900; }
+    .rv-score-max { color: rgba(255,255,255,.5); font-size: 13px; }
+    .rv-score-bar { height: 6px; border-radius: 4px; background: rgba(255,255,255,.15); overflow: hidden; margin-bottom: 8px; }
+    .rv-score-bar-fill { height: 100%; background: #3ddc97; }
+    .rv-score-level { text-align: center; font-size: 10.5px; color: rgba(255,255,255,.75); }
+    .rv-comment-box { background: #f8f7f3; border-radius: 8px; padding: 12px 14px; font-size: 10.5px; color: #4a4540; line-height: 1.7; margin-bottom: 14px; }
+    .rv-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+    .rv-table th { background: #16202c; color: #fff; text-align: left; padding: 7px 10px; font-weight: 700; }
+    .rv-table td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; color: #4a4540; }
+    .rv-table tr:nth-child(even) td { background: #f8f7f3; }
 
     /* ===== TRUST ===== */
     .trust-grid {
@@ -691,7 +651,6 @@
       cursor: pointer;
     }
     .form-checkbox-item input { margin-top: 3px; accent-color: #6c63ff; cursor: pointer; }
-    .form-checkbox-item.is-main { font-weight: 700; color: #ffffff; }
     .form-submit {
       width: 100%;
       background: linear-gradient(135deg, #6c63ff, #3d35b0);
@@ -921,7 +880,7 @@
   <div class="container">
     <div class="fade-up" style="text-align:center;margin-bottom:16px;">
       <p class="section-label">MAIN TOOL</p>
-      <h2 class="section-title">セキュリティ脆弱性診断<br>— まずは無料で</h2>
+      <h2 class="section-title">セキュリティ脆弱性診断　“まずは無料で診断”</h2>
       <p class="section-desc" style="margin:0 auto;">診断したいサイトのURLを入力するだけ。ブラウザだけで動作し、インストール不要です。</p>
     </div>
 
@@ -993,31 +952,35 @@
 
         <div style="margin-top:20px;">
           <div class="rv-report">
-            <div class="rv-report-head">
-              <div class="tag">診断レポート（生成イメージ）</div>
-              <div class="site">診断対象：https://example-shop.co.jp</div>
-            </div>
-            <div class="rv-report-body">
-              <div class="rv-vuln-item high">
-                <div class="rv-vuln-top"><span class="rv-vuln-badge">高リスク</span><span class="rv-vuln-name">SQLインジェクション</span></div>
-                <div class="rv-vuln-desc">検索フォームにSQLインジェクションの脆弱性が想定されます。DBへの不正アクセスにつながるリスクがあります。</div>
+            <div class="rv-report-topbar"><span class="rv-report-savebtn">PDFとして保存・印刷する</span></div>
+            <div class="rv-report-body2">
+              <div class="rv-report-title">Webサイトセキュリティリスク評価レポート</div>
+              <p class="rv-blur" style="font-size:10.5px;color:#4a4540;margin-bottom:14px;">本評価は、対象サイトに一切の攻撃・過度なアクセスを行わない非侵襲診断であり、公開情報をもとに分析した結果を記載しています。評価はOWASP Top 10 2025を参照しています。</p>
+
+              <div class="rv-score-box">
+                <div class="rv-score-label">総合セキュリティリスクスコア</div>
+                <div class="rv-score-row"><span class="rv-score-num">84</span><span class="rv-score-max">/ 100</span></div>
+                <div class="rv-score-bar"><div class="rv-score-bar-fill" style="width:84%"></div></div>
+                <div class="rv-score-level">レベル：軽微なリスク（早めの対応推奨）</div>
               </div>
-              <div class="rv-vuln-item high">
-                <div class="rv-vuln-top"><span class="rv-vuln-badge">高リスク</span><span class="rv-vuln-name">XSS（クロスサイトスクリプティング）</span></div>
-                <div class="rv-vuln-desc">入力フォームでスクリプト挿入が可能な構成です。ユーザー情報が盗まれるリスクがあります。</div>
+
+              <div class="rv-comment-box rv-blur">
+                経営者様向けコメント：本サイトはホームページ作成サービスを利用して構築されており、サーバー・システムの基礎的な管理はプラットフォーム側で行われています。フォームや認証まわりの設定状況を中心に、優先度の高い対応項目を整理しています。
               </div>
-              <div class="rv-vuln-item mid">
-                <div class="rv-vuln-top"><span class="rv-vuln-badge">中リスク</span><span class="rv-vuln-name">HTTPSの設定不備</span></div>
-                <div class="rv-vuln-desc">一部ページで暗号化されていない通信が想定されます。</div>
-              </div>
-              <div class="rv-vuln-item low">
-                <div class="rv-vuln-top"><span class="rv-vuln-badge">低リスク</span><span class="rv-vuln-name">セキュリティヘッダーの未設定</span></div>
-                <div class="rv-vuln-desc">X-Frame-Options等のヘッダーが未設定の可能性があります。</div>
-              </div>
+
+              <table class="rv-table">
+                <thead><tr><th>チェック項目</th><th>状態</th><th>リスク内容</th></tr></thead>
+                <tbody class="rv-blur">
+                  <tr><td>Content-Security-Policy</td><td>未対応</td><td>悪意あるスクリプトの実行を許すおそれ</td></tr>
+                  <tr><td>X-Frame-Options</td><td>対応済み</td><td>クリックジャッキング対策は良好</td></tr>
+                  <tr><td>X-Content-Type-Options</td><td>未対応</td><td>ファイル種別偽装のリスク</td></tr>
+                  <tr><td>Referrer-Policy</td><td>未対応</td><td>URL経由の情報漏えいリスク</td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <p class="rv-caption">▲ 実際のツール画面のイメージ。</p>
+        <p class="rv-caption">▲ 実際のツール画面のイメージ。詳細部分はぼかして表示しています。</p>
       </div>
     </div>
   </div>
@@ -1083,63 +1046,6 @@
   </div>
 </section>
 
-<!-- ===== おまけ：お役立ちAIツール ===== -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="fade-up" style="text-align:center;margin-bottom:8px;">
-      <p class="section-label section-label-muted">BONUS TOOLS</p>
-      <h2 class="section-title" style="font-size:clamp(18px,2.6vw,24px);">脆弱性診断とあわせて使える<br>セキュリティ対策お役立ちAIツール</h2>
-      <p class="section-desc" style="margin:0 auto;font-size:13.5px;">脆弱性診断だけでなく、生成AIを安全に使うためのお役立ちツールもご用意しています。おまけとしてどうぞ。</p>
-    </div>
-
-    <div class="tools-mini-grid">
-      <a class="tool-mini" href="demo/ai-shindan.html" target="_blank">
-        <div class="tool-mini-icon">📋</div>
-        <div>
-          <div class="tool-mini-name">生成AI利用診断</div>
-          <div class="tool-mini-desc">組織・個人の生成AI活用レベルを診断</div>
-        </div>
-      </a>
-      <a class="tool-mini" href="demo/guideline.html" target="_blank">
-        <div class="tool-mini-icon">📄</div>
-        <div>
-          <div class="tool-mini-name">ガイドライン作成</div>
-          <div class="tool-mini-desc">生成AI利用ガイドラインを自動生成</div>
-        </div>
-      </a>
-      <a class="tool-mini" href="demo/hallucination.html" target="_blank">
-        <div class="tool-mini-icon">🔍</div>
-        <div>
-          <div class="tool-mini-name">ハルシネーション対策</div>
-          <div class="tool-mini-desc">AIの誤情報生成を最小化するプロンプト設計</div>
-        </div>
-      </a>
-      <a class="tool-mini" href="demo/factcheck.html" target="_blank">
-        <div class="tool-mini-icon">✅</div>
-        <div>
-          <div class="tool-mini-name">ファクトチェッカー</div>
-          <div class="tool-mini-desc">AI生成テキストの事実確認を自動化</div>
-        </div>
-      </a>
-      <a class="tool-mini" href="demo/confidential.html" target="_blank">
-        <div class="tool-mini-icon">🔒</div>
-        <div>
-          <div class="tool-mini-name">機密情報チェッカー</div>
-          <div class="tool-mini-desc">プロンプト内の機密・個人情報を自動検出</div>
-        </div>
-      </a>
-      <a class="tool-mini" href="demo/mail-check.html" target="_blank">
-        <div class="tool-mini-icon">📧</div>
-        <div>
-          <div class="tool-mini-name">不正メールチェッカー</div>
-          <div class="tool-mini-desc">怪しいメールをAIが総合的に評価</div>
-        </div>
-      </a>
-    </div>
-    <p class="owasp-note" style="text-align:center;margin-top:20px;">▲ 各ツールをクリックすると、入力画面・結果画面のデモをご覧いただけます。</p>
-  </div>
-</section>
-
 <!-- ===== FAQ ===== -->
 <section class="section">
   <div class="container" style="max-width:720px;">
@@ -1182,13 +1088,6 @@
           <span class="faq-arrow">▼</span>
         </button>
         <div class="faq-a">はい、IT担当者でない方でも直感的に操作できるよう設計されています。URLを入力するだけで診断レポートが生成されます。</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          <span class="faq-q-text">生成AI活用に関する他のツールも使えますか？</span>
-          <span class="faq-arrow">▼</span>
-        </button>
-        <div class="faq-a">はい。脆弱性診断のほかに、生成AI利用診断・ガイドライン作成・ハルシネーション対策・ファクトチェッカー・機密情報チェッカー・不正メールチェッカーもおまけとしてご利用いただけます。</div>
       </div>
     </div>
   </div>
@@ -1243,19 +1142,6 @@
         <div class="form-checkbox-group" style="grid-template-columns:1fr 1fr;">
           <label class="form-checkbox-item"><input type="radio" name="無料簡易診断の希望" value="希望する" required />希望する</label>
           <label class="form-checkbox-item"><input type="radio" name="無料簡易診断の希望" value="希望しない" required />希望しない</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">関心のある内容（複数選択可）<span class="req">必須</span></label>
-        <div class="form-checkbox-group">
-          <label class="form-checkbox-item is-main"><input type="checkbox" name="関心のあるツール" value="セキュリティ脆弱性診断" required />セキュリティ脆弱性診断</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="生成AI利用診断" />生成AI利用診断</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ガイドライン作成" />ガイドライン作成</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ハルシネーション対策" />ハルシネーション対策</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="ファクトチェッカー" />ファクトチェッカー</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="機密情報チェッカー" />機密情報チェッカー</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="不正メールチェッカー" />不正メールチェッカー</label>
-          <label class="form-checkbox-item"><input type="checkbox" name="関心のあるツール" value="なし" />なし</label>
         </div>
       </div>
       <div class="form-group">

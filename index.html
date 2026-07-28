@@ -1229,6 +1229,7 @@
         body: new URLSearchParams(new FormData(form)).toString()
       });
       if (res.ok) {
+        gtag('event', 'conversion', {'send_to': 'AW-11459227340/bXqCCJTmpdccEMzdl9gq'});
         form.reset();
         msg.style.display = 'block';
         msg.style.color = '#34d399';
